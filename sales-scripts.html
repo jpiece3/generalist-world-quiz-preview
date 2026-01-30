@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales Scripts -- Generalist World Lead Conversations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1B7C6F;
+    --primary-light: #E6F5F2;
+    --secondary: #E8836B;
+    --secondary-light: #FDF0ED;
+    --accent: #9B7EC8;
+    --accent-light: #F3EFF9;
+    --bg: #FAFAF8;
+    --bg-card: #FFFFFF;
+    --text: #1A1A1A;
+    --text-secondary: #4A4A4A;
+    --text-muted: #8A8A8A;
+    --border: #E5E3DF;
+    --hot: #2D9C6F;
+    --hot-bg: #E8F7F0;
+    --warm: #E5A74E;
+    --warm-bg: #FDF5E8;
+    --cold: #5B8FD4;
+    --cold-bg: #EBF2FB;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text-secondary); line-height: 1.65; font-size: 16px; }
+  .page-header { background: linear-gradient(135deg, var(--primary) 0%, #1a6b60 100%); color: white; padding: 60px 24px 48px; text-align: center; }
+  .page-header h1 { font-family: 'DM Sans', sans-serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+  .page-header p { font-size: 1.05rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+  .container { max-width: 860px; margin: 0 auto; padding: 40px 24px 60px; }
+
+  .script-section { margin-bottom: 48px; }
+  .script-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+    padding-bottom: 12px; border-bottom: 2px solid var(--border);
+  }
+  .temp-badge {
+    display: inline-flex; padding: 4px 14px; border-radius: 999px;
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .badge-hot { background: var(--hot-bg); color: var(--hot); }
+  .badge-warm { background: var(--warm-bg); color: var(--warm); }
+  .badge-cold { background: var(--cold-bg); color: var(--cold); }
+  .script-header h2 { font-family: 'DM Sans', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--text); }
+
+  .script-meta { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; }
+
+  .conversation-block {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 24px; margin-bottom: 16px;
+  }
+  .conversation-block h3 {
+    font-family: 'DM Sans', sans-serif; font-size: 1.05rem; font-weight: 600;
+    color: var(--primary); margin-bottom: 12px;
+  }
+  .conversation-block h4 {
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 600;
+    color: var(--text); margin: 16px 0 8px;
+  }
+
+  .dialogue { margin: 12px 0; }
+  .dialogue-line { display: flex; gap: 12px; margin-bottom: 12px; }
+  .dialogue-speaker {
+    flex-shrink: 0; font-weight: 700; font-size: 0.8rem;
+    text-transform: uppercase; letter-spacing: 0.04em; padding-top: 2px;
+    min-width: 50px;
+  }
+  .speaker-you { color: var(--primary); }
+  .speaker-lead { color: var(--secondary); }
+  .dialogue-text { font-size: 0.95rem; line-height: 1.6; }
+  .dialogue-text em { color: var(--text-muted); font-style: italic; }
+
+  .tip-box {
+    background: var(--primary-light); border-left: 3px solid var(--primary);
+    padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 0.9rem;
+  }
+
+  /* OBJECTIONS TABLE */
+  .objection-section { margin-top: 48px; }
+  .objection-section h2 { font-family: 'DM Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 20px; }
+  .objection-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .objection-table th {
+    background: var(--primary-light); color: var(--primary); padding: 12px 16px;
+    text-align: left; font-weight: 600; font-family: 'DM Sans', sans-serif;
+  }
+  .objection-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .objection-table tr:hover td { background: #FDFCFA; }
+  .objection-label { font-weight: 600; color: var(--text); }
+
+  .footer { text-align: center; padding: 32px 24px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+
+  @media (max-width: 640px) {
+    .page-header { padding: 40px 16px 32px; }
+    .page-header h1 { font-size: 1.6rem; }
+    .container { padding: 24px 16px; }
+    .conversation-block { padding: 18px; }
+    .dialogue-line { flex-direction: column; gap: 4px; }
+    .dialogue-speaker { min-width: auto; }
+    .objection-table { font-size: 0.8rem; }
+    .objection-table th, .objection-table td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Sales Conversation Scripts</h1>
+  <p>Conversation frameworks for following up with quiz leads at each temperature -- Hot, Warm, and Cold. Written in Milly's warm, genuine voice. Never pushy.</p>
+</div>
+
+<div class="container">
+
+  <!-- HOT LEAD SCRIPT -->
+  <div class="script-section">
+    <div class="script-header">
+      <span class="temp-badge badge-hot">Score 80-100</span>
+      <h2>Hot Lead Script</h2>
+    </div>
+    <div class="script-meta">These leads have high clarity, confidence, and momentum. They've likely invested in career development before. They need community and acceleration -- not education.</div>
+
+    <div class="conversation-block">
+      <h3>Opening (DM, Email, or Call)</h3>
+      <div class="dialogue">
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-you">You:</div>
+          <div class="dialogue-text">Hi {{name}} -- I saw you took the Career Blocker Quiz and scored in the top range. Your results show you've already done a lot of the hard work. What's the biggest thing on your plate career-wise right now?</div>
+        </div>
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-lead">Lead:</div>
+          <div class="dialogue-text"><em>(They'll typically talk about wanting to connect with peers, build a portfolio career, or accelerate a transition they've already started.)</em></div>
+        </div>
+      </div>
+      <div class="tip-box">Hot leads don't need to be sold on generalism. They already get it. Focus on WHAT'S NEXT, not WHY.</div>
+    </div>
+
+    <div class="conversation-block">
+      <h3>Discovery</h3>
+      <div class="dialogue">
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-you">You:</div>
+          <div class="dialogue-text">That makes total sense. One thing I hear a lot from generalists at your stage is that the biggest gap isn't skills or strategy -- it's the peer group. Are you currently connected with other generalists who are operating at your level?</div>
+        </div>
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-lead">Lead:</div>
+          <div class="dialogue-text"><em>(Most will say no -- this is the core pain point for hot leads.)</em></div>
+        </div>
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-you">You:</div>
+          <div class="dialogue-text">Yeah, that's really common. High-performing generalists often plateau without peer challenge. You need people who push you, not people you're explaining yourself to.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="conversation-block">
+      <h3>Recommendation</h3>
+      <div class="dialogue">
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-you">You:</div>
+          <div class="dialogue-text">Based on your quiz results and what you've shared, I think the Generalist World Community would be the right fit. It's 570+ people -- fractional executives, portfolio careerists, founders -- who are building the kind of career you're describing. There are live workshops, accountability groups, and curated job opportunities that match generalist strengths. Would you like me to tell you more about how it works?</div>
+        </div>
+      </div>
+      <div class="tip-box">Never lead with the price. Lead with the peer group. Hot leads buy access to people, not information.</div>
+    </div>
+
+    <div class="conversation-block">
+      <h3>Close</h3>
+      <div class="dialogue">
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-you">You:</div>
+          <div class="dialogue-text">The next community cohort opens soon. I can get you on the waitlist so you're first to know when doors open. There's a 30-day money-back guarantee, so there's no risk in trying it. Want me to add you?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WARM LEAD SCRIPT -->
+  <div class="script-section">
+    <div class="script-header">
+      <span class="temp-badge badge-warm">Score 50-79</span>
+      <h2>Warm Lead Script</h2>
+    </div>
+    <div class="script-meta">These leads have identified as generalists but have specific gaps. They need frameworks and tools -- not just community. Focus on their specific blocker.</div>
+
+    <div class="conversation-block">
+      <h3>Opening</h3>
+      <div class="dialogue">
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-you">You:</div>
+          <div class="dialogue-text">Hi {{name}} -- thanks for taking the Career Blocker Quiz. Your results showed that your biggest area to work on is {{profile_name}}. Does that feel accurate to you?</div>
+        </div>
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-lead">Lead:</div>
+          <div class="dialogue-text"><em>(They'll usually confirm or elaborate on their situation.)</em></div>
+        </div>
+      </div>
+      <div class="tip-box">Always validate their quiz result first. Let THEM confirm it's accurate. This builds trust in the diagnostic and makes your recommendation feel personalised.</div>
+    </div>
+
+    <div class="conversation-block">
+      <h3>Discovery</h3>
+      <div class="dialogue">
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-you">You:</div>
+          <div class="dialogue-text">Tell me more about that. When did you first notice this was holding you back?</div>
+        </div>
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-lead">Lead:</div>
+          <div class="dialogue-text"><em>(Let them talk. The more they describe their situation, the more invested they become in finding a solution.)</em></div>
+        </div>
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-you">You:</div>
+          <div class="dialogue-text">That makes sense. I hear this a lot from generalists -- you have all the skills, but the system for translating them is missing. It's not a YOU problem. It's a framework problem.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="conversation-block">
+      <h3>Recommendation (Blocker-Specific)</h3>
+      <h4>If Positioning Gap:</h4>
+      <div class="dialogue">
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-you">You:</div>
+          <div class="dialogue-text">For positioning specifically, we have the Positioning Guidebook -- it's a practical guide you can work through in about 3 hours. It helps you craft your generalist narrative, build your portfolio, and answer "what do you do?" with confidence. Would you like me to send you the link?</div>
+        </div>
+      </div>
+      <h4>If Strategy or Focus Gap:</h4>
+      <div class="dialogue">
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-you">You:</div>
+          <div class="dialogue-text">For the strategy piece, Unboxed is our career design program. It gives you a structured process -- map your skills, run career experiments, build your career flywheel. The modules are bite-sized, 20 minutes or less. Would you like to hear more about how it works?</div>
+        </div>
+      </div>
+      <h4>If Belonging Gap:</h4>
+      <div class="dialogue">
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-you">You:</div>
+          <div class="dialogue-text">The isolation piece is real. If that's your main blocker, the community might actually be a better fit than a course. But I'd also recommend starting with the newsletter and Archetype Quiz -- they'll give you a sense of what the community is like, and you can join when you're ready.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="conversation-block">
+      <h3>No-Pressure Close</h3>
+      <div class="dialogue">
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-you">You:</div>
+          <div class="dialogue-text">No rush on any of this. The newsletter goes out every week with free frameworks -- that's honestly a great place to start. When you're ready for the next step, everything I mentioned will still be here. Squiggly careers don't follow timelines.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLD LEAD SCRIPT -->
+  <div class="script-section">
+    <div class="script-header">
+      <span class="temp-badge badge-cold">Score 0-49</span>
+      <h2>Cold Lead Script</h2>
+    </div>
+    <div class="script-meta">These leads are in the early stages -- they may not even identify as generalists yet. Focus on validation and education. Never sell to cold leads.</div>
+
+    <div class="conversation-block">
+      <h3>Opening</h3>
+      <div class="dialogue">
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-you">You:</div>
+          <div class="dialogue-text">Hi {{name}} -- I noticed you took the Career Blocker Quiz. First, I just want to say: the fact that you took it means you're already further along than you think. What made you curious enough to take it?</div>
+        </div>
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-lead">Lead:</div>
+          <div class="dialogue-text"><em>(They'll often say something like "I saw it on TikTok" or "A friend shared it." They may not use the word "generalist" yet.)</em></div>
+        </div>
+      </div>
+      <div class="tip-box">With cold leads, your only job is to validate their experience and introduce the generalist identity. Do NOT mention products, prices, or community. Just help them name what they're feeling.</div>
+    </div>
+
+    <div class="conversation-block">
+      <h3>Validation & Education</h3>
+      <div class="dialogue">
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-you">You:</div>
+          <div class="dialogue-text">Can I ask -- have you ever felt like your career path looks "messy" compared to the people around you? Like everyone else has one clear thing and you have... many things?</div>
+        </div>
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-lead">Lead:</div>
+          <div class="dialogue-text"><em>(This is almost always a strong "yes" -- it's their core pain point.)</em></div>
+        </div>
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-you">You:</div>
+          <div class="dialogue-text">That's actually a really common experience. There's a name for it: you're a generalist. Not scattered, not unfocused -- multi-dimensional. There are millions of people like this, and 47,000+ of them read our weekly newsletter because someone finally put words to what they've always felt.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="conversation-block">
+      <h3>Gentle Next Step</h3>
+      <div class="dialogue">
+        <div class="dialogue-line">
+          <div class="dialogue-speaker speaker-you">You:</div>
+          <div class="dialogue-text">If you're curious about exploring this more, I'd suggest two things. First, the weekly newsletter -- it's free and it's packed with career frameworks for people with your wiring. And second, the Archetype Quiz -- it tells you what KIND of generalist you are. It pairs really well with the Career Blocker results you already have.</div>
+        </div>
+      </div>
+      <div class="tip-box">The best outcome for a cold lead conversation is that they subscribe to the newsletter and take the Archetype Quiz. That's a win. Do not push further.</div>
+    </div>
+  </div>
+
+  <!-- COMMON OBJECTIONS -->
+  <div class="objection-section">
+    <h2>Common Objections</h2>
+
+    <table class="objection-table">
+      <thead>
+        <tr><th style="width:35%">Objection</th><th>Response</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="objection-label">"I'm not sure I'm really a generalist."</td>
+          <td>"That's totally fair. Most people who end up in our community felt the same way at first. The Archetype Quiz can help you figure that out -- it only takes 5 minutes. And honestly, the fact that you're even asking the question is usually a sign."</td>
+        </tr>
+        <tr>
+          <td class="objection-label">"I can't afford to invest in my career right now."</td>
+          <td>"Completely understand. The newsletter and Archetype Quiz are free, and they deliver genuine value every week. When the time is right, everything else will still be here. No rush."</td>
+        </tr>
+        <tr>
+          <td class="objection-label">"I've tried career courses before and they didn't help."</td>
+          <td>"Were those courses designed for generalists, or for specialists? Most career advice assumes a linear path. Everything at Generalist World is built specifically for nonlinear, multi-dimensional careers. It's a different framework entirely."</td>
+        </tr>
+        <tr>
+          <td class="objection-label">"I don't have time for a community."</td>
+          <td>"That's the most common concern -- and also the most common feedback from members is 'I wish I'd joined sooner.' The community is asynchronous. Drop in when you can. Most people spend 30 minutes a week and get enormous value."</td>
+        </tr>
+        <tr>
+          <td class="objection-label">"I just need a job, not a community."</td>
+          <td>"Totally valid. Our newsletter actually includes curated job listings every week -- roles specifically suited to generalist skill sets. You won't find these tagged by archetype anywhere else. Subscribe to the newsletter and you'll get them every week, free."</td>
+        </tr>
+        <tr>
+          <td class="objection-label">"What makes this different from other career platforms?"</td>
+          <td>"Two things. First, everything is built for generalists -- not specialists trying to add breadth. The frameworks, the quiz, the community -- all designed for nonlinear careers. Second, the community is real. 570+ people across 6 continents, 100+ events, global meetups. This isn't a course with a comment section. It's a living network."</td>
+        </tr>
+        <tr>
+          <td class="objection-label">"I'll think about it."</td>
+          <td>"Absolutely. Take your time. The newsletter will keep showing up every week with free frameworks and opportunities. When you're ready, we'll be here. Squiggly careers don't follow timelines."</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="footer">
+  Generalist World -- Career Blocker Quiz Funnel -- Sales Conversation Scripts<br>
+  3 temperature-based frameworks + 7 common objection responses
+</div>
+
+</body>
+</html>

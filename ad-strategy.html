@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ad Strategy -- Generalist World Career Blocker Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1B7C6F;
+    --primary-light: #E6F5F2;
+    --secondary: #E8836B;
+    --secondary-light: #FDF0ED;
+    --accent: #9B7EC8;
+    --accent-light: #F3EFF9;
+    --bg: #FAFAF8;
+    --bg-card: #FFFFFF;
+    --text: #1A1A1A;
+    --text-secondary: #4A4A4A;
+    --text-muted: #8A8A8A;
+    --border: #E5E3DF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text-secondary); line-height: 1.65; font-size: 16px; }
+
+  .page-header {
+    background: linear-gradient(135deg, var(--primary) 0%, #1a6b60 100%);
+    color: white; padding: 60px 24px 48px; text-align: center;
+  }
+  .page-header h1 { font-family: 'DM Sans', sans-serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+  .page-header p { font-size: 1.05rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+  .container { max-width: 880px; margin: 0 auto; padding: 40px 24px 60px; }
+
+  .platform-section { margin-bottom: 48px; }
+  .platform-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+    padding-bottom: 12px; border-bottom: 2px solid var(--border);
+  }
+  .platform-icon {
+    display: flex; align-items: center; justify-content: center;
+    width: 40px; height: 40px; border-radius: 10px; font-size: 1.3rem; flex-shrink: 0;
+  }
+  .icon-google { background: #E8F0FE; }
+  .icon-meta { background: #EBE8FF; }
+  .icon-linkedin { background: #E1F0FF; }
+  .platform-header h2 { font-family: 'DM Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text); }
+
+  .ad-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 24px; margin-bottom: 16px; transition: box-shadow 0.2s ease;
+  }
+  .ad-card:hover { box-shadow: 0 4px 16px rgba(27,124,111,0.06); }
+  .ad-card-label {
+    display: inline-block; padding: 3px 10px; border-radius: 999px;
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.05em; margin-bottom: 12px;
+  }
+  .label-variation { background: var(--primary-light); color: var(--primary); }
+  .label-hook { background: var(--secondary-light); color: var(--secondary); }
+
+  .ad-card h3 { font-family: 'DM Sans', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+  .ad-card h4 { font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--primary); margin: 12px 0 6px; }
+  .ad-card p { font-size: 0.95rem; margin-bottom: 8px; }
+  .ad-card ul { padding-left: 20px; margin-bottom: 12px; font-size: 0.95rem; }
+  .ad-card li { margin-bottom: 4px; }
+
+  .ad-preview {
+    background: #F4F3F0; border-radius: 10px; padding: 16px 20px;
+    margin: 12px 0; font-size: 0.9rem; border-left: 3px solid var(--primary);
+  }
+  .ad-preview .ad-headline { font-family: 'DM Sans', sans-serif; font-weight: 700; color: var(--text); font-size: 1rem; margin-bottom: 4px; }
+  .ad-preview .ad-body { color: var(--text-secondary); margin-bottom: 4px; }
+  .ad-preview .ad-cta { color: var(--primary); font-weight: 600; font-size: 0.85rem; }
+
+  .ab-section { margin-top: 48px; }
+  .ab-section h2 { font-family: 'DM Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 20px; }
+
+  .ab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .ab-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px;
+  }
+  .ab-card h4 { font-family: 'DM Sans', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+  .ab-card p { font-size: 0.9rem; }
+
+  .targeting-box {
+    background: var(--primary-light); border-radius: 10px; padding: 16px 20px; margin: 12px 0; font-size: 0.9rem;
+  }
+  .targeting-box strong { color: var(--primary); }
+
+  .footer { text-align: center; padding: 32px 24px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+
+  @media (max-width: 640px) {
+    .page-header { padding: 40px 16px 32px; }
+    .page-header h1 { font-size: 1.6rem; }
+    .container { padding: 24px 16px; }
+    .platform-header h2 { font-size: 1.2rem; }
+    .ad-card { padding: 18px; }
+    .ab-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Ad Strategy</h1>
+  <p>Platform-specific ad variations for the Generalist World Career Blocker Quiz. Google, Facebook/Instagram, and LinkedIn -- with A/B testing recommendations.</p>
+</div>
+
+<div class="container">
+
+  <!-- GOOGLE ADS -->
+  <div class="platform-section">
+    <div class="platform-header">
+      <div class="platform-icon icon-google">G</div>
+      <h2>Google Ads</h2>
+    </div>
+
+    <div class="ad-card">
+      <span class="ad-card-label label-variation">Variation 1 -- Identity Search</span>
+      <h3>Targeting: "multipotentialite" + "generalist career"</h3>
+      <div class="targeting-box">
+        <strong>Keywords:</strong> multipotentialite, generalist career, multipotentialite careers, generalist vs specialist, portfolio career<br>
+        <strong>Match type:</strong> Phrase match + broad match modifier<br>
+        <strong>Est. CPC:</strong> $1.50-$2.50
+      </div>
+      <div class="ad-preview">
+        <div class="ad-headline">What's Holding Your Generalist Career Back?</div>
+        <div class="ad-body">Free 3-min quiz reveals your #1 career blocker. Personalised results with strengths radar + actionable next steps. 47,000+ generalists trust us.</div>
+        <div class="ad-cta">Take the Free Quiz &rarr;</div>
+      </div>
+      <h4>Why this works</h4>
+      <p>People searching "multipotentialite" already identify with the generalist label. The diagnostic angle ("what's holding you back?") adds urgency to an already-interested audience. Low KD (8) means affordable clicks.</p>
+    </div>
+
+    <div class="ad-card">
+      <span class="ad-card-label label-variation">Variation 2 -- Career Clarity</span>
+      <h3>Targeting: "career clarity quiz" + "what job is right for me"</h3>
+      <div class="targeting-box">
+        <strong>Keywords:</strong> career clarity quiz, what job is right for me, career identity crisis, too many interests career, jack of all trades career<br>
+        <strong>Match type:</strong> Exact + phrase match<br>
+        <strong>Est. CPC:</strong> $2.00-$4.00
+      </div>
+      <div class="ad-preview">
+        <div class="ad-headline">Too Many Interests? That's a Superpower.</div>
+        <div class="ad-body">Discover why your "scattered" career is actually your biggest advantage. Take the free Career Blocker Quiz -- 3 minutes to clarity.</div>
+        <div class="ad-cta">Find Your Career Blocker &rarr;</div>
+      </div>
+      <h4>Why this works</h4>
+      <p>These searchers don't know they're generalists yet. The ad reframes their pain ("too many interests") as a strength. This is the Cold segment entry point -- high volume, lower intent, but huge potential for identity-affirming conversion.</p>
+    </div>
+
+    <div class="ad-card">
+      <span class="ad-card-label label-variation">Variation 3 -- AI / Future of Work</span>
+      <h3>Targeting: "career in AI era" + "future-proof career"</h3>
+      <div class="targeting-box">
+        <strong>Keywords:</strong> career in AI era, future-proof career, AI replacing jobs, what skills for AI, career change 2026<br>
+        <strong>Match type:</strong> Broad match modifier<br>
+        <strong>Est. CPC:</strong> $3.00-$5.00
+      </div>
+      <div class="ad-preview">
+        <div class="ad-headline">AI Is Making Specialists Replaceable</div>
+        <div class="ad-body">Generalists were built for this. Discover your career strengths in 3 minutes -- and why your range is the one thing AI can't replicate.</div>
+        <div class="ad-cta">Take the Free Assessment &rarr;</div>
+      </div>
+      <h4>Why this works</h4>
+      <p>Hooks into active career anxiety about AI. Reframes generalism as a future-proof strategy. Higher CPC but strong emotional resonance. Use with remarketing for maximum ROAS.</p>
+    </div>
+  </div>
+
+  <!-- FACEBOOK / INSTAGRAM -->
+  <div class="platform-section">
+    <div class="platform-header">
+      <div class="platform-icon icon-meta">f</div>
+      <h2>Facebook / Instagram Ads</h2>
+    </div>
+
+    <div class="ad-card">
+      <span class="ad-card-label label-hook">Hook 1 -- The Reframe</span>
+      <h3>"You're not scattered. You're a generalist."</h3>
+      <div class="targeting-box">
+        <strong>Audience:</strong> Interest-based: career development, personal growth, TED Talks, entrepreneurship, creative professionals<br>
+        <strong>Age:</strong> 25-45<br>
+        <strong>Placements:</strong> Feed, Stories, Reels<br>
+        <strong>Format:</strong> Static image or short video (15s)
+      </div>
+      <div class="ad-preview">
+        <div class="ad-headline">You're Not Scattered. You're a Generalist.</div>
+        <div class="ad-body">The world told you to pick one thing. It was wrong. Take the free 3-minute Career Blocker Quiz and discover what's actually holding you back -- and how to fix it. Join 47,000+ generalists who stopped apologizing for their range.</div>
+        <div class="ad-cta">Take the Quiz</div>
+      </div>
+      <h4>Creative direction</h4>
+      <p>Static image: teal background with bold white text "You're not scattered. You're a generalist." or short video showing someone's LinkedIn profile transforming from "confused" to "confident" positioning. Use warm, organic Generalist World brand colors.</p>
+    </div>
+
+    <div class="ad-card">
+      <span class="ad-card-label label-hook">Hook 2 -- The Question</span>
+      <h3>"What's REALLY holding your career back?"</h3>
+      <div class="targeting-box">
+        <strong>Audience:</strong> Lookalike of existing quiz takers + newsletter subscribers<br>
+        <strong>Age:</strong> 28-50<br>
+        <strong>Placements:</strong> Feed, Stories<br>
+        <strong>Format:</strong> Carousel (4 cards showing quiz flow)
+      </div>
+      <div class="ad-preview">
+        <div class="ad-headline">What's REALLY Holding Your Career Back?</div>
+        <div class="ad-body">Is it positioning? Strategy? Isolation? Focus? Take the free quiz to find out. 7 questions. 3 minutes. Your personalised career map -- including a strengths radar and 3 actionable tips.</div>
+        <div class="ad-cta">Get My Career Map</div>
+      </div>
+      <h4>Creative direction</h4>
+      <p>Carousel showing: Card 1: "What if you're not stuck... you're just a generalist?" Card 2: Screenshot of radar chart result. Card 3: Testimonial quote. Card 4: CTA "Take the free quiz." Use brand teal/coral palette throughout.</p>
+    </div>
+
+    <div class="ad-card">
+      <span class="ad-card-label label-hook">Hook 3 -- The Milly Story</span>
+      <h3>"I spent years thinking something was wrong with me."</h3>
+      <div class="targeting-box">
+        <strong>Audience:</strong> Women 28-45, interest in career change, personal development, community building<br>
+        <strong>Age:</strong> 28-45<br>
+        <strong>Placements:</strong> Feed, Stories, Reels<br>
+        <strong>Format:</strong> Video (30-60s) -- Milly talking to camera
+      </div>
+      <div class="ad-preview">
+        <div class="ad-headline">I Built a Career Platform for "Scattered" People</div>
+        <div class="ad-body">"I spent years thinking something was wrong with me for not fitting into one lane. Then I found out I'm a generalist -- and 47,000+ people feel the same way. Take the free Career Blocker Quiz to find out what's really holding you back."</div>
+        <div class="ad-cta">Take the Free Quiz</div>
+      </div>
+      <h4>Creative direction</h4>
+      <p>Authentic video of Milly (founder) sharing her story in 30-60 seconds. Casual setting (Scottish Highlands, home office). No polish needed -- authenticity IS the brand. Text overlays for key phrases. End card with quiz URL and CTA.</p>
+    </div>
+  </div>
+
+  <!-- LINKEDIN -->
+  <div class="platform-section">
+    <div class="platform-header">
+      <div class="platform-icon icon-linkedin">in</div>
+      <h2>LinkedIn Ads</h2>
+    </div>
+
+    <div class="ad-card">
+      <span class="ad-card-label label-variation">Variation 1 -- Professional Positioning</span>
+      <h3>Targeting: Mid-senior professionals, cross-functional roles</h3>
+      <div class="targeting-box">
+        <strong>Audience:</strong> Job titles: Chief of Staff, Product Manager, Program Manager, Community Manager, Operations Manager, Fractional CXO<br>
+        <strong>Seniority:</strong> Mid to Senior<br>
+        <strong>Industries:</strong> Technology, Consulting, Startups, Creative Services<br>
+        <strong>Format:</strong> Single image or document ad
+      </div>
+      <div class="ad-preview">
+        <div class="ad-headline">The World Rewards Specialists. You've Never Been Just One Thing.</div>
+        <div class="ad-body">If your career looks "messy" compared to your specialist peers, you might be a generalist -- and that's a superpower. Take the free Career Blocker Quiz to discover what's standing between you and a career that fits the shape of you. 47,000+ professionals already have.</div>
+        <div class="ad-cta">Take the Career Blocker Quiz</div>
+      </div>
+      <h4>Why LinkedIn works for this</h4>
+      <p>LinkedIn is where career identity anxiety is highest. Generalists scroll past specialist peers with clean titles and feel inadequate. This ad meets them in that moment of comparison and offers a reframe. B2B-adjacent targeting reaches high-value leads for the Community.</p>
+    </div>
+
+    <div class="ad-card">
+      <span class="ad-card-label label-variation">Variation 2 -- Thought Leadership</span>
+      <h3>Targeting: Career development interest, leadership skills</h3>
+      <div class="targeting-box">
+        <strong>Audience:</strong> Interest groups: Career Development, Leadership, Personal Branding, Entrepreneurship<br>
+        <strong>Seniority:</strong> Manager+<br>
+        <strong>Format:</strong> Text ad or sponsored content (article-style)
+      </div>
+      <div class="ad-preview">
+        <div class="ad-headline">"So What Do You Actually Do?"</div>
+        <div class="ad-body">If that question makes you freeze, you're not alone. 47,000+ professionals share the same experience -- they're generalists with broad skills and nonlinear career paths. The free Career Blocker Quiz reveals the #1 thing holding your career back and gives you specific tools to fix it. 3 minutes. Your personalised career map.</div>
+        <div class="ad-cta">Find My Career Blocker</div>
+      </div>
+      <h4>Why this works</h4>
+      <p>Uses the exact trigger phrase ("So what do you actually do?") that every generalist dreads. Immediate emotional recognition. The article-style format feels native to LinkedIn and doesn't trigger ad blindness. Strong for remarketing existing website visitors.</p>
+    </div>
+  </div>
+
+  <!-- A/B TESTING -->
+  <div class="ab-section">
+    <h2>A/B Testing Recommendations</h2>
+
+    <div class="ab-grid">
+      <div class="ab-card">
+        <h4>Test 1: Identity vs. Diagnostic Hook</h4>
+        <p><strong>A:</strong> "You're not scattered. You're a generalist." (identity)<br>
+        <strong>B:</strong> "What's holding your generalist career back?" (diagnostic)<br>
+        <strong>Metric:</strong> CTR and quiz start rate<br>
+        <strong>Hypothesis:</strong> Identity hook wins for cold audiences; diagnostic wins for warm audiences who already know the term.</p>
+      </div>
+      <div class="ab-card">
+        <h4>Test 2: Social Proof Placement</h4>
+        <p><strong>A:</strong> "47,000+ generalists trust us" in ad body<br>
+        <strong>B:</strong> Community member testimonial quote<br>
+        <strong>Metric:</strong> Quiz completion rate<br>
+        <strong>Hypothesis:</strong> Numeric proof wins for Google (trust signal); testimonial wins for Meta (emotional signal).</p>
+      </div>
+      <div class="ab-card">
+        <h4>Test 3: CTA Copy</h4>
+        <p><strong>A:</strong> "Take the Free Quiz"<br>
+        <strong>B:</strong> "Find My Career Blocker"<br>
+        <strong>C:</strong> "Get My Career Map"<br>
+        <strong>Metric:</strong> Click-through rate<br>
+        <strong>Hypothesis:</strong> Outcome-oriented CTAs (B, C) outperform generic "take quiz."</p>
+      </div>
+      <div class="ab-card">
+        <h4>Test 4: Video vs. Static (Meta)</h4>
+        <p><strong>A:</strong> Milly founder story video (30s)<br>
+        <strong>B:</strong> Bold text static image with brand colors<br>
+        <strong>Metric:</strong> Cost per quiz completion<br>
+        <strong>Hypothesis:</strong> Video wins for cold audiences (trust-building); static wins for retargeted (they already know the brand).</p>
+      </div>
+      <div class="ab-card">
+        <h4>Test 5: Landing Page vs. Direct Quiz</h4>
+        <p><strong>A:</strong> Ad links to landing page (full context)<br>
+        <strong>B:</strong> Ad links directly to quiz Q1 (skip landing)<br>
+        <strong>Metric:</strong> Email capture rate<br>
+        <strong>Hypothesis:</strong> Direct quiz entry wins for warm audiences; landing page wins for cold audiences who need context.</p>
+      </div>
+      <div class="ab-card">
+        <h4>Test 6: Audience Segments (LinkedIn)</h4>
+        <p><strong>A:</strong> Job title targeting (Chief of Staff, PM, etc.)<br>
+        <strong>B:</strong> Interest targeting (Career Development)<br>
+        <strong>C:</strong> Lookalike of community members<br>
+        <strong>Metric:</strong> Hot lead percentage from quiz<br>
+        <strong>Hypothesis:</strong> Job title targeting yields highest-quality leads; interest targeting yields volume.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Generalist World -- Career Blocker Quiz Funnel -- Ad Strategy<br>
+  8 ad variations across 3 platforms + 6 A/B testing recommendations
+</div>
+
+</body>
+</html>

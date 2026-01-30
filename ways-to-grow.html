@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ways to Grow -- Generalist World Quiz Funnel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1B7C6F;
+    --primary-light: #E6F5F2;
+    --secondary: #E8836B;
+    --secondary-light: #FDF0ED;
+    --accent: #9B7EC8;
+    --accent-light: #F3EFF9;
+    --bg: #FAFAF8;
+    --bg-card: #FFFFFF;
+    --text: #1A1A1A;
+    --text-secondary: #4A4A4A;
+    --text-muted: #8A8A8A;
+    --border: #E5E3DF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text-secondary); line-height: 1.65; font-size: 16px; }
+  .page-header { background: linear-gradient(135deg, var(--primary) 0%, #1a6b60 100%); color: white; padding: 60px 24px 48px; text-align: center; }
+  .page-header h1 { font-family: 'DM Sans', sans-serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+  .page-header p { font-size: 1.05rem; opacity: 0.9; max-width: 620px; margin: 0 auto; }
+  .container { max-width: 880px; margin: 0 auto; padding: 40px 24px 60px; }
+
+  .section { margin-bottom: 48px; }
+  .section-label {
+    display: inline-block; padding: 3px 12px; border-radius: 999px;
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; margin-bottom: 12px;
+  }
+  .label-included { background: var(--primary-light); color: var(--primary); }
+  .label-addon { background: var(--secondary-light); color: var(--secondary); }
+
+  .section h2 { font-family: 'DM Sans', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+  .section > p { font-size: 1rem; margin-bottom: 24px; }
+
+  /* INCLUDED FEATURES */
+  .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .feature-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 28px; position: relative; overflow: hidden;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .feature-card:hover { box-shadow: 0 4px 16px rgba(27,124,111,0.08); transform: translateY(-2px); }
+  .feature-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+  }
+  .feature-icon { font-size: 2rem; margin-bottom: 12px; }
+  .feature-card h3 { font-family: 'DM Sans', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .feature-card p { font-size: 0.9rem; line-height: 1.6; }
+  .feature-card ul { padding-left: 18px; font-size: 0.9rem; margin-top: 8px; }
+  .feature-card li { margin-bottom: 4px; }
+  .included-badge {
+    display: inline-block; margin-top: 12px; padding: 3px 10px;
+    border-radius: 999px; background: var(--primary-light); color: var(--primary);
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+
+  /* ADD-ON CARDS */
+  .addon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .addon-card {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 28px; position: relative; overflow: hidden;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .addon-card:hover { box-shadow: 0 4px 16px rgba(232,131,107,0.08); transform: translateY(-2px); }
+  .addon-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--secondary), #E5A74E);
+  }
+  .addon-card h3 { font-family: 'DM Sans', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .addon-price {
+    font-family: 'DM Sans', sans-serif; font-size: 1.3rem; font-weight: 700;
+    color: var(--secondary); margin-bottom: 10px;
+  }
+  .addon-card p { font-size: 0.9rem; line-height: 1.6; margin-bottom: 10px; }
+  .addon-card ul { padding-left: 18px; font-size: 0.85rem; }
+  .addon-card li { margin-bottom: 4px; }
+  .addon-badge {
+    display: inline-block; margin-top: 12px; padding: 3px 10px;
+    border-radius: 999px; background: var(--secondary-light); color: var(--secondary);
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+
+  /* VALUE NOTE */
+  .value-note {
+    background: var(--primary-light); border: 1px solid rgba(27,124,111,0.15);
+    border-radius: 12px; padding: 24px; text-align: center; margin-top: 32px;
+  }
+  .value-note h3 { font-family: 'DM Sans', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+  .value-note p { font-size: 0.95rem; max-width: 600px; margin: 0 auto; }
+
+  .footer { text-align: center; padding: 32px 24px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+
+  @media (max-width: 640px) {
+    .page-header { padding: 40px 16px 32px; }
+    .page-header h1 { font-size: 1.6rem; }
+    .container { padding: 24px 16px; }
+    .feature-grid, .addon-grid { grid-template-columns: 1fr; }
+    .feature-card, .addon-card { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Ways to Grow</h1>
+  <p>Everything included in your quiz funnel build, plus optional add-ons to amplify lead generation, engagement, and conversion.</p>
+</div>
+
+<div class="container">
+
+  <!-- INCLUDED FEATURES -->
+  <div class="section">
+    <span class="section-label label-included">Included in Build</span>
+    <h2>What's Included</h2>
+    <p>These features are part of your quiz funnel build -- no additional cost.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">&#x1F4DD;</div>
+        <h3>Lead Form Integration</h3>
+        <p>Email capture integrated directly into the quiz flow. Leads are stored in Supabase with full quiz data -- score, profile, temperature, all answers, and tags.</p>
+        <ul>
+          <li>Email + first name capture</li>
+          <li>Skip option (still captures quiz data)</li>
+          <li>Automatic segmentation by temperature</li>
+          <li>Profile and tag data for personalisation</li>
+        </ul>
+        <span class="included-badge">Included</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">&#x1F310;</div>
+        <h3>Custom Domain Hosting</h3>
+        <p>Deployed on Vercel with your custom domain. Fast, reliable, and globally distributed. SSL certificate included.</p>
+        <ul>
+          <li>Vercel deployment (Astro framework)</li>
+          <li>Custom domain configuration</li>
+          <li>SSL/HTTPS automatically provisioned</li>
+          <li>Global CDN for fast load times</li>
+          <li>99.99% uptime SLA</li>
+        </ul>
+        <span class="included-badge">Included</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">&#x1F4CA;</div>
+        <h3>Lead Intelligence Dashboard</h3>
+        <p>Admin dashboard at /admin showing real-time funnel analytics, lead data, and marketing attribution.</p>
+        <ul>
+          <li>Funnel visualisation (views, starts, completions, captures)</li>
+          <li>Temperature distribution (Hot / Warm / Cold)</li>
+          <li>Answer analysis per question</li>
+          <li>UTM source tracking for ad attribution</li>
+          <li>Daily activity charts</li>
+          <li>Password-protected access</li>
+        </ul>
+        <span class="included-badge">Included</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">&#x2709;</div>
+        <h3>Automated Email Sequences</h3>
+        <p>14 emails across 5 sequences, all written in Milly's voice. Automatically triggered and segmented by quiz score.</p>
+        <ul>
+          <li>Welcome sequence (3 emails, all leads)</li>
+          <li>Cold nurture (4 emails, score 0-49)</li>
+          <li>Warm activation (3 emails, score 50-79)</li>
+          <li>Hot path (2 emails, score 80-100)</li>
+          <li>Win-back (2 emails, inactive leads)</li>
+          <li>Sent via Resend (hourly cron)</li>
+        </ul>
+        <span class="included-badge">Included</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">&#x1F3A8;</div>
+        <h3>Brand-Matched Design</h3>
+        <p>The entire quiz is designed in Generalist World's visual system. Soft design mode with teal/coral/purple palette, organic animations, and mobile-first layout.</p>
+        <ul>
+          <li>Custom colour palette from brand</li>
+          <li>DM Sans + Inter typography</li>
+          <li>Soft mode animations and micro-interactions</li>
+          <li>Responsive (mobile, tablet, desktop)</li>
+          <li>WCAG AA accessibility compliance</li>
+        </ul>
+        <span class="included-badge">Included</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">&#x1F4C4;</div>
+        <h3>Strategy Pack</h3>
+        <p>Complete marketing strategy delivered alongside the quiz build. Ad variations, social calendar, sales scripts, and more.</p>
+        <ul>
+          <li>8 ad variations (Google, Meta, LinkedIn)</li>
+          <li>30-day social content calendar</li>
+          <li>Sales scripts for Hot / Warm / Cold leads</li>
+          <li>Copy explainer with strategic rationale</li>
+          <li>Client preview site for review</li>
+        </ul>
+        <span class="included-badge">Included</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ADD-ONS -->
+  <div class="section">
+    <span class="section-label label-addon">Growth Add-Ons</span>
+    <h2>Optional Add-Ons</h2>
+    <p>Amplify your quiz funnel with these optional growth tools. Each integrates directly with your existing quiz and lead data.</p>
+
+    <div class="addon-grid">
+      <div class="addon-card">
+        <h3>Instagram DM Automation</h3>
+        <div class="addon-price">$97/mo</div>
+        <p>Automatically send quiz links via Instagram DM when people comment a keyword on your posts or Reels. Turns organic engagement into quiz completions.</p>
+        <ul>
+          <li>Keyword trigger (e.g., "QUIZ" in comments)</li>
+          <li>Automated DM with quiz link + personal message</li>
+          <li>Follow-up DM sequence (3 messages)</li>
+          <li>Analytics on DM-to-completion conversion</li>
+          <li>Connects to ManyChat or similar</li>
+        </ul>
+        <span class="addon-badge">Monthly</span>
+      </div>
+
+      <div class="addon-card">
+        <h3>Voice Follow-Up Agent</h3>
+        <div class="addon-price">$1,000/mo</div>
+        <p>AI-powered voice agent that calls hot leads within 5 minutes of quiz completion. Uses Milly's conversational style to schedule consultations.</p>
+        <ul>
+          <li>Triggered by Hot score (80-100)</li>
+          <li>Natural conversation in brand voice</li>
+          <li>Books directly into calendar</li>
+          <li>Call recordings for review</li>
+          <li>Transfers to human for complex conversations</li>
+          <li>Integrates with existing CRM</li>
+        </ul>
+        <span class="addon-badge">Monthly</span>
+      </div>
+
+      <div class="addon-card">
+        <h3>Text Message Follow-Up</h3>
+        <div class="addon-price">$197/mo</div>
+        <p>SMS follow-up sequence for quiz leads who provide their phone number. Higher open rates than email (98% vs. 20%).</p>
+        <ul>
+          <li>Optional phone field on email capture</li>
+          <li>3-message SMS sequence (results, tip, CTA)</li>
+          <li>Temperature-segmented messaging</li>
+          <li>Compliance with TCPA / GDPR</li>
+          <li>Two-way messaging for replies</li>
+        </ul>
+        <span class="addon-badge">Monthly</span>
+      </div>
+
+      <div class="addon-card">
+        <h3>Additional Quiz Funnels</h3>
+        <div class="addon-price">$2,000 each</div>
+        <p>Build additional quiz funnels for different angles, audiences, or products. Each gets the same full build -- design, copy, emails, analytics, and deployment.</p>
+        <ul>
+          <li>New quiz concept and architecture</li>
+          <li>Full copy (landing, quiz, emails, strategy)</li>
+          <li>Separate analytics tracking</li>
+          <li>Shared or separate Supabase database</li>
+          <li>Cross-promotion between quizzes</li>
+        </ul>
+        <span class="addon-badge">One-Time</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUE NOTE -->
+  <div class="value-note">
+    <h3>Your quiz funnel is a lead generation engine.</h3>
+    <p>The included features handle everything from traffic to email nurture. The add-ons amplify what's already working -- adding channels, speed, and personalisation at each stage of the funnel.</p>
+  </div>
+
+</div>
+
+<div class="footer">
+  Generalist World -- Career Blocker Quiz Funnel -- Included Features & Growth Add-Ons
+</div>
+
+</body>
+</html>

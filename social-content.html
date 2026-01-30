@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>30-Day Social Content Calendar -- Generalist World</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1B7C6F;
+    --primary-light: #E6F5F2;
+    --secondary: #E8836B;
+    --secondary-light: #FDF0ED;
+    --accent: #9B7EC8;
+    --accent-light: #F3EFF9;
+    --bg: #FAFAF8;
+    --bg-card: #FFFFFF;
+    --text: #1A1A1A;
+    --text-secondary: #4A4A4A;
+    --text-muted: #8A8A8A;
+    --border: #E5E3DF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text-secondary); line-height: 1.65; font-size: 16px; }
+  .page-header { background: linear-gradient(135deg, var(--primary) 0%, #1a6b60 100%); color: white; padding: 60px 24px 48px; text-align: center; }
+  .page-header h1 { font-family: 'DM Sans', sans-serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+  .page-header p { font-size: 1.05rem; opacity: 0.9; max-width: 620px; margin: 0 auto; }
+  .container { max-width: 920px; margin: 0 auto; padding: 40px 24px 60px; }
+
+  .section { margin-bottom: 48px; }
+  .section h2 { font-family: 'DM Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 16px; }
+  .section > p { margin-bottom: 20px; font-size: 1rem; }
+
+  /* PILLARS */
+  .pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .pillar-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+  .pillar-card:hover { box-shadow: 0 4px 12px rgba(27,124,111,0.06); }
+  .pillar-emoji { font-size: 2rem; margin-bottom: 8px; }
+  .pillar-card h4 { font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .pillar-card p { font-size: 0.85rem; }
+
+  /* PLATFORM STRATEGY */
+  .platform-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 32px; }
+  .platform-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+  .platform-card h3 { font-family: 'DM Sans', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+  .platform-card h4 { font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--primary); margin: 10px 0 6px; }
+  .platform-card ul { padding-left: 18px; font-size: 0.9rem; }
+  .platform-card li { margin-bottom: 4px; }
+  .platform-card p { font-size: 0.9rem; }
+
+  /* WEEK TABLES */
+  .week-section { margin-bottom: 36px; }
+  .week-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .week-badge { display: inline-flex; padding: 4px 14px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+  .week-1 { background: var(--primary-light); color: var(--primary); }
+  .week-2 { background: var(--secondary-light); color: var(--secondary); }
+  .week-3 { background: var(--accent-light); color: var(--accent); }
+  .week-4 { background: #E1F0FF; color: #3B7DD8; }
+  .week-header h3 { font-family: 'DM Sans', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--text); }
+
+  .post-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .post-table th { background: var(--primary-light); color: var(--primary); padding: 10px 12px; text-align: left; font-weight: 600; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .post-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .post-table tr:hover td { background: #FDFCFA; }
+  .post-day { font-weight: 600; color: var(--text); white-space: nowrap; }
+  .post-platform { font-size: 0.8rem; color: var(--text-muted); }
+  .post-pillar { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 0.7rem; font-weight: 600; }
+  .p-identity { background: var(--primary-light); color: var(--primary); }
+  .p-quiz { background: var(--secondary-light); color: var(--secondary); }
+  .p-community { background: var(--accent-light); color: var(--accent); }
+  .p-education { background: #E1F0FF; color: #3B7DD8; }
+  .p-social { background: #FFF3E0; color: #E5A74E; }
+
+  .footer { text-align: center; padding: 32px 24px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+
+  @media (max-width: 640px) {
+    .page-header { padding: 40px 16px 32px; }
+    .page-header h1 { font-size: 1.6rem; }
+    .container { padding: 24px 16px; }
+    .pillar-grid { grid-template-columns: repeat(2, 1fr); }
+    .platform-grid { grid-template-columns: 1fr; }
+    .post-table { font-size: 0.8rem; }
+    .post-table th, .post-table td { padding: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>30-Day Social Content Calendar</h1>
+  <p>Content pillars, platform strategy, and a week-by-week calendar to drive quiz traffic and community engagement for Generalist World.</p>
+</div>
+
+<div class="container">
+
+  <!-- CONTENT PILLARS -->
+  <div class="section">
+    <h2>Content Pillars</h2>
+    <p>Five pillars that map to the keyword clusters and quiz funnel messaging. Every post should fit at least one pillar.</p>
+    <div class="pillar-grid">
+      <div class="pillar-card">
+        <div class="pillar-emoji">&#x1F3AF;</div>
+        <h4>Identity Validation</h4>
+        <p>"You're not scattered" messaging. Normalises the generalist experience.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-emoji">&#x1F9E9;</div>
+        <h4>Quiz Promotion</h4>
+        <p>Direct quiz CTAs, result teasers, profile reveals, and completion celebration.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-emoji">&#x1F91D;</div>
+        <h4>Community Stories</h4>
+        <p>Member testimonials, transformation stories, and behind-the-scenes community moments.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-emoji">&#x1F4DA;</div>
+        <h4>Education & Frameworks</h4>
+        <p>Career frameworks, skill-stacking models, and positioning tools -- value-first content.</p>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-emoji">&#x1F310;</div>
+        <h4>Social Proof & Trends</h4>
+        <p>Stats, research data, AI-era positioning, and "generalist vs specialist" discourse.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PLATFORM STRATEGY -->
+  <div class="section">
+    <h2>Platform Strategy</h2>
+    <div class="platform-grid">
+      <div class="platform-card">
+        <h3>LinkedIn</h3>
+        <h4>Role</h4>
+        <p>Primary B2B-adjacent channel. Career professionals, HR leaders, fractional executives.</p>
+        <h4>Content types</h4>
+        <ul>
+          <li>Long-form text posts with hooks</li>
+          <li>Carousel (quiz flow previews)</li>
+          <li>Polls ("What's your biggest career blocker?")</li>
+          <li>Company page + Milly personal posts</li>
+        </ul>
+        <h4>Frequency</h4>
+        <p>4-5 posts/week (mix of company and personal)</p>
+        <h4>Best times</h4>
+        <p>Tue-Thu 8-10am GMT, Tue/Wed 5-6pm GMT</p>
+      </div>
+
+      <div class="platform-card">
+        <h3>Instagram</h3>
+        <h4>Role</h4>
+        <p>Community building + brand warmth. Visual identity, behind-the-scenes, community celebration.</p>
+        <h4>Content types</h4>
+        <ul>
+          <li>Reels (15-30s: quiz teasers, identity reframes)</li>
+          <li>Carousels (frameworks, tips, quiz walkthrough)</li>
+          <li>Stories (polls, Q&A, quiz link)</li>
+          <li>Feed posts (quotes, testimonials)</li>
+        </ul>
+        <h4>Frequency</h4>
+        <p>3-4 feed posts/week + daily stories</p>
+        <h4>Best times</h4>
+        <p>Mon-Fri 11am-1pm GMT, Sat 10am GMT</p>
+      </div>
+
+      <div class="platform-card">
+        <h3>X (Twitter)</h3>
+        <h4>Role</h4>
+        <p>Thought leadership, discourse engagement, quick-hit frameworks. "Generalist vs specialist" conversations.</p>
+        <h4>Content types</h4>
+        <ul>
+          <li>Threads (3-8 tweets: frameworks, quiz rationale)</li>
+          <li>Quote tweets (reframing specialist discourse)</li>
+          <li>Single tweets (stats, hot takes, quiz CTAs)</li>
+          <li>Replies to career/AI discourse</li>
+        </ul>
+        <h4>Frequency</h4>
+        <p>5-7 tweets/week + 2-3 threads/month</p>
+        <h4>Best times</h4>
+        <p>Mon-Fri 12-2pm GMT, 5-7pm GMT</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEEK 1 -->
+  <div class="week-section">
+    <div class="week-header">
+      <span class="week-badge week-1">Week 1</span>
+      <h3>Launch & Identity</h3>
+    </div>
+    <table class="post-table">
+      <thead>
+        <tr><th>Day</th><th>Platform</th><th>Content</th><th>Pillar</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="post-day">Mon</td>
+          <td class="post-platform">LinkedIn</td>
+          <td>"The world told you to pick one thing. It was wrong." -- Long text post introducing the Career Blocker Quiz. Personal story hook from Milly. CTA: Take the quiz.</td>
+          <td><span class="post-pillar p-quiz">Quiz</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Mon</td>
+          <td class="post-platform">Instagram</td>
+          <td>Reel: "3 signs you're a generalist (and one quiz that proves it)." Quick-cut format with text overlays. Link in bio to quiz.</td>
+          <td><span class="post-pillar p-identity">Identity</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Tue</td>
+          <td class="post-platform">X (Twitter)</td>
+          <td>Thread: "I spent years thinking something was wrong with me. Here's what I wish someone had told me at 25." (6 tweets about the generalist identity + quiz CTA at end)</td>
+          <td><span class="post-pillar p-identity">Identity</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Wed</td>
+          <td class="post-platform">LinkedIn</td>
+          <td>Carousel: "The 5 Career Blockers Holding Generalists Back" -- one slide per profile (Positioning, Strategy, Belonging, Focus, Renaissance). Last slide: quiz CTA.</td>
+          <td><span class="post-pillar p-quiz">Quiz</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Thu</td>
+          <td class="post-platform">Instagram</td>
+          <td>Feed post: Bold text graphic "You're not scattered. You're multi-dimensional." Caption shares the quiz + what you'll learn. Stories: poll "Which career blocker do you think is yours?"</td>
+          <td><span class="post-pillar p-identity">Identity</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Fri</td>
+          <td class="post-platform">LinkedIn</td>
+          <td>"47,000 people opened their email this week to read about generalist careers. Here's what that tells us about the future of work." Data-driven post linking to quiz + newsletter.</td>
+          <td><span class="post-pillar p-social">Social Proof</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Sat</td>
+          <td class="post-platform">Instagram</td>
+          <td>Carousel: "The Generalist Value Pyramid" -- 5-slide framework breakdown. CTA: "Want to know YOUR biggest career blocker? Link in bio."</td>
+          <td><span class="post-pillar p-education">Education</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- WEEK 2 -->
+  <div class="week-section">
+    <div class="week-header">
+      <span class="week-badge week-2">Week 2</span>
+      <h3>Social Proof & Frameworks</h3>
+    </div>
+    <table class="post-table">
+      <thead>
+        <tr><th>Day</th><th>Platform</th><th>Content</th><th>Pillar</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="post-day">Mon</td>
+          <td class="post-platform">LinkedIn</td>
+          <td>"When I ask generalists 'What do you actually do?' -- the room goes silent." Post about the positioning gap, the #1 quiz result. Leads to quiz CTA.</td>
+          <td><span class="post-pillar p-education">Education</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Tue</td>
+          <td class="post-platform">Instagram</td>
+          <td>Reel: Community member testimonial video or quote card -- "I cried real tears because of how beautifully they articulate what I feel." CTA: take the quiz.</td>
+          <td><span class="post-pillar p-community">Community</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Wed</td>
+          <td class="post-platform">X (Twitter)</td>
+          <td>Single tweet: "Generalists don't need to pick one thing. They need a system for all of them. (We built a free quiz to find your system.)" + quiz link</td>
+          <td><span class="post-pillar p-quiz">Quiz</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Wed</td>
+          <td class="post-platform">LinkedIn</td>
+          <td>Poll: "What's the #1 thing holding your career back?" Options: Positioning / Strategy / Isolation / Too many options / None -- I'm thriving. Results become next week's content.</td>
+          <td><span class="post-pillar p-quiz">Quiz</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Thu</td>
+          <td class="post-platform">Instagram</td>
+          <td>Carousel: "The Bridge Statement" framework -- how to answer "what do you do?" in 15 seconds. 5 slides with examples. CTA: Quiz to find your blocker.</td>
+          <td><span class="post-pillar p-education">Education</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Fri</td>
+          <td class="post-platform">LinkedIn</td>
+          <td>"AI is making specialists replaceable. Generalists were built for this." Post about WEF 2025 data + cross-functional skills demand. CTA: newsletter signup.</td>
+          <td><span class="post-pillar p-social">Social Proof</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Sat</td>
+          <td class="post-platform">Instagram</td>
+          <td>Stories: "Quiz result reveal" -- walk through each of the 5 profiles with mini-descriptions. "Which one sounds like you?" poll on each.</td>
+          <td><span class="post-pillar p-quiz">Quiz</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- WEEK 3 -->
+  <div class="week-section">
+    <div class="week-header">
+      <span class="week-badge week-3">Week 3</span>
+      <h3>Deep Dives & Community</h3>
+    </div>
+    <table class="post-table">
+      <thead>
+        <tr><th>Day</th><th>Platform</th><th>Content</th><th>Pillar</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="post-day">Mon</td>
+          <td class="post-platform">LinkedIn</td>
+          <td>Long post: "The 3 frameworks I wish I had 10 years ago" -- Bridge Statement, Interest Inventory, 90-Day Sprint. Milly personal post. CTA: quiz + newsletter.</td>
+          <td><span class="post-pillar p-education">Education</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Tue</td>
+          <td class="post-platform">Instagram</td>
+          <td>Reel: "Day in the life of a generalist" -- quick montage of switching between tasks/projects with text overlays showing generalist superpowers. Quiz CTA.</td>
+          <td><span class="post-pillar p-identity">Identity</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Wed</td>
+          <td class="post-platform">X (Twitter)</td>
+          <td>Thread: "5 real jobs that secretly want generalists (and how to position yourself for them):" -- Chief of Staff, Product Manager, Growth Lead, Community Manager, Fractional CXO. Each with salary range.</td>
+          <td><span class="post-pillar p-education">Education</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Thu</td>
+          <td class="post-platform">LinkedIn</td>
+          <td>Community spotlight: Featured member story -- how they used their quiz result to reshape their LinkedIn profile and land a new role. Before/after positioning.</td>
+          <td><span class="post-pillar p-community">Community</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Thu</td>
+          <td class="post-platform">Instagram</td>
+          <td>Feed post: Quote card from community member -- "Generalist World has helped me reshape how I see myself." Warm teal background.</td>
+          <td><span class="post-pillar p-community">Community</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Fri</td>
+          <td class="post-platform">X (Twitter)</td>
+          <td>"The world rewards specialists. You've never been just one thing. And that's exactly why the world needs you." + quiz link. Simple, shareable.</td>
+          <td><span class="post-pillar p-identity">Identity</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Sat</td>
+          <td class="post-platform">Instagram</td>
+          <td>Carousel: "Your career isn't broken. It's squiggly." 6-slide visual explaining nonlinear career paths as a design choice, not a flaw. CTA: quiz link in bio.</td>
+          <td><span class="post-pillar p-identity">Identity</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- WEEK 4 -->
+  <div class="week-section">
+    <div class="week-header">
+      <span class="week-badge week-4">Week 4</span>
+      <h3>Momentum & Conversion</h3>
+    </div>
+    <table class="post-table">
+      <thead>
+        <tr><th>Day</th><th>Platform</th><th>Content</th><th>Pillar</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="post-day">Mon</td>
+          <td class="post-platform">LinkedIn</td>
+          <td>"We've had X,000 people take the Career Blocker Quiz in the first 3 weeks. Here's what the data says about generalists in 2026." Anonymised aggregate results post -- most common blocker, average scores, surprising patterns.</td>
+          <td><span class="post-pillar p-social">Social Proof</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Tue</td>
+          <td class="post-platform">Instagram</td>
+          <td>Reel: "Which quiz result did YOU get?" Comment engagement post. Show all 5 profiles as cards. Ask people to comment their result. Stories: reshare comments.</td>
+          <td><span class="post-pillar p-quiz">Quiz</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Wed</td>
+          <td class="post-platform">X (Twitter)</td>
+          <td>Thread: "What every employer should know about hiring generalists" -- data-backed argument for cross-functional hiring. Tags #futureofwork. Links to quiz + newsletter.</td>
+          <td><span class="post-pillar p-social">Social Proof</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Thu</td>
+          <td class="post-platform">LinkedIn</td>
+          <td>"If you still haven't taken the Career Blocker Quiz -- what's stopping you?" Direct, playful CTA post. Screenshot of results page. Social proof: "X,000 people already have."</td>
+          <td><span class="post-pillar p-quiz">Quiz</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Thu</td>
+          <td class="post-platform">Instagram</td>
+          <td>Carousel: "5 things I learned from 47,000 generalists" -- Milly sharing newsletter insights. Each slide = one learning. Final slide: quiz CTA.</td>
+          <td><span class="post-pillar p-education">Education</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Fri</td>
+          <td class="post-platform">All platforms</td>
+          <td>"Community doors are opening soon." Teaser for next cohort. "In the meantime, take the Career Blocker Quiz to find out if community is what you need." Links to quiz + community waitlist.</td>
+          <td><span class="post-pillar p-community">Community</span></td>
+        </tr>
+        <tr>
+          <td class="post-day">Sat</td>
+          <td class="post-platform">Instagram</td>
+          <td>Stories: "Month 1 recap" -- quiz stats, favourite community moments, most-shared post. "Thank you for being part of the generalist movement." Warm, genuine, no hard sell.</td>
+          <td><span class="post-pillar p-community">Community</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="footer">
+  Generalist World -- Career Blocker Quiz Funnel -- 30-Day Social Content Calendar<br>
+  5 content pillars | 3 platforms | 28 posts
+</div>
+
+</body>
+</html>

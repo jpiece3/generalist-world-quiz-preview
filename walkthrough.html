@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Funnel Walkthrough -- Generalist World</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1B7C6F;
+    --primary-dark: #155F55;
+    --primary-light: #E6F5F2;
+    --secondary: #E8836B;
+    --secondary-light: #FDF0ED;
+    --accent: #9B7EC8;
+    --accent-light: #F3EFF9;
+    --bg: #FAFAF8;
+    --bg-card: #FFFFFF;
+    --text: #1A1A1A;
+    --text-secondary: #4A4A4A;
+    --text-muted: #8A8A8A;
+    --border: #E5E3DF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text-secondary);
+    line-height: 1.65;
+    font-size: 16px;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, #1a6b60 60%, #155F55 100%);
+    color: white;
+    padding: 80px 24px 64px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(232,131,107,0.15);
+    filter: blur(60px);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -60px;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: rgba(155,126,200,0.12);
+    filter: blur(50px);
+  }
+  .hero-badge {
+    display: inline-block;
+    padding: 4px 16px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.15);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+    position: relative;
+    z-index: 1;
+  }
+  .hero p {
+    font-size: 1.15rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* CONTAINER */
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-bottom: 56px;
+  }
+  .section-label {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+  }
+  .label-teal { background: var(--primary-light); color: var(--primary); }
+  .label-coral { background: var(--secondary-light); color: var(--secondary); }
+  .label-purple { background: var(--accent-light); color: var(--accent); }
+
+  .section h2 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 16px;
+    letter-spacing: -0.015em;
+  }
+  .section > p {
+    font-size: 1.05rem;
+    margin-bottom: 24px;
+    max-width: 680px;
+  }
+
+  /* STEPS */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .step {
+    display: flex;
+    gap: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    transition: box-shadow 0.2s ease;
+  }
+  .step:hover {
+    box-shadow: 0 4px 16px rgba(27,124,111,0.06);
+  }
+  .step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+  .step-content h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .step-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* DATA CARDS */
+  .data-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .data-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .data-card:hover {
+    box-shadow: 0 4px 12px rgba(27,124,111,0.08);
+    transform: translateY(-2px);
+  }
+  .data-card .number {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 4px;
+  }
+  .data-card .label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+
+  /* INFO CARDS */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .info-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    transition: box-shadow 0.2s ease;
+  }
+  .info-card:hover {
+    box-shadow: 0 4px 12px rgba(27,124,111,0.08);
+  }
+  .info-card h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .info-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  /* HIGHLIGHT */
+  .highlight-box {
+    background: var(--primary-light);
+    border-left: 3px solid var(--primary);
+    padding: 16px 20px;
+    border-radius: 0 10px 10px 0;
+    margin: 20px 0;
+    font-size: 0.95rem;
+  }
+
+  /* LIST */
+  .check-list {
+    list-style: none;
+    padding: 0;
+  }
+  .check-list li {
+    padding: 8px 0;
+    padding-left: 28px;
+    position: relative;
+    font-size: 0.95rem;
+  }
+  .check-list li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 32px 24px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 640px) {
+    .hero { padding: 48px 16px 40px; }
+    .hero h1 { font-size: 1.8rem; }
+    .container { padding: 32px 16px; }
+    .section h2 { font-size: 1.4rem; }
+    .step { flex-direction: column; gap: 12px; }
+    .data-grid { grid-template-columns: repeat(2, 1fr); }
+    .info-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">Quiz Funnel Walkthrough</div>
+  <h1>What's Holding Your<br>Generalist Career Back?</h1>
+  <p>A diagnostic quiz funnel for Generalist World -- built to turn curious visitors into engaged community members through identity-affirming career insights.</p>
+</div>
+
+<div class="container">
+
+  <!-- SECTION 1: What This Is -->
+  <div class="section">
+    <span class="section-label label-teal">Section 1</span>
+    <h2>What This Is</h2>
+    <p>This is a 7-question diagnostic quiz funnel that identifies the #1 thing holding someone's generalist career back -- and recommends the right Generalist World resource to fix it.</p>
+
+    <div class="highlight-box">
+      <strong>How it complements the existing quiz:</strong> The Generalist Archetype Quiz (39K+ completions) answers "What kind of generalist am I?" This Career Blocker Quiz answers "What's stopping me from thriving as one?" The two quizzes work as a pair -- identity + diagnosis.
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h4>Quiz Format</h4>
+        <p>7 questions using 7 different interactive types (cards, slider, tags, emoji, radio, toggle, stars). Takes about 3 minutes.</p>
+      </div>
+      <div class="info-card">
+        <h4>Result Profiles</h4>
+        <p>5 career profiles (Positioning Gap, Strategy Gap, Belonging Gap, Focus Gap, Renaissance Builder) each with personalised insights and recommendations.</p>
+      </div>
+      <div class="info-card">
+        <h4>Email Sequences</h4>
+        <p>14 emails across 5 sequences (Welcome, Cold, Warm, Hot, Win-Back). All in Milly's voice. Temperature-segmented for relevance.</p>
+      </div>
+      <div class="info-card">
+        <h4>Analytics Dashboard</h4>
+        <p>Admin dashboard at /admin showing funnel metrics, completion rates, temperature distribution, answer analysis, and UTM sources.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: How It Works -->
+  <div class="section">
+    <span class="section-label label-coral">Section 2</span>
+    <h2>How It Works</h2>
+    <p>The user journey from first click to engaged subscriber, step by step.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Landing Page</h3>
+          <p>Visitor arrives from social media, newsletter, or ads. They see a warm, identity-affirming headline ("What's Holding Your Generalist Career Back?") and a clear CTA to start. Social proof (47,000+ subscribers, 570+ community) builds trust.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>7-Question Quiz</h3>
+          <p>Each question uses a different interactive type for engagement. Questions progress from safe/cognitive (Q1-3) to emotional/diagnostic (Q4-5) to commitment/aspiration (Q6-7). Progress bar with encouraging messages keeps them moving.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Email Capture</h3>
+          <p>After all 7 questions, they see: "Your career map is ready." They enter their email and name to see results. Value-focused copy explains what they'll get (strengths radar, profile, next steps). Skip option available.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3>Loading Screen</h3>
+          <p>4 branded messages rotate while results calculate: "Mapping your generalist superpowers..." / "Identifying your career blocker..." / "Building your personalised strengths radar..." / "Matching you with your generalist profile..."</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          <h3>Results Page</h3>
+          <p>Personalised results: 5-axis radar chart, profile name and headline, key insight, hidden insight, 3 actionable tips, and temperature-appropriate CTAs. Value FIRST, CTAs second.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">6</div>
+        <div class="step-content">
+          <h3>Email Nurture</h3>
+          <p>Automated sequences trigger based on score: Welcome (all), then Cold (0-49), Warm (50-79), or Hot (80-100). Win-back sequence activates after 14 days of no opens. All in Milly's voice.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: Why It Works -->
+  <div class="section">
+    <span class="section-label label-purple">Section 3</span>
+    <h2>Why It Works</h2>
+    <p>The strategy behind the quiz is grounded in research on Generalist World's audience and market position.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h4>Proven Quiz Model</h4>
+        <p>The existing Archetype Quiz has generated 39,000+ completions and 22,000+ newsletter subscribers. This new quiz builds on that proven model with a diagnostic angle.</p>
+      </div>
+      <div class="info-card">
+        <h4>Identity-First Psychology</h4>
+        <p>Generalists have spent years feeling "broken." The quiz validates their identity before recommending anything. This builds deep trust and brand loyalty.</p>
+      </div>
+      <div class="info-card">
+        <h4>Temperature Segmentation</h4>
+        <p>Instead of one-size-fits-all follow-up, every lead gets content matched to their readiness. Cold leads get education. Warm leads get frameworks. Hot leads get community.</p>
+      </div>
+      <div class="info-card">
+        <h4>AI-Era Relevance</h4>
+        <p>The quiz positions generalists as uniquely adapted for the AI era -- cross-functional, integrative, creative. This hooks into active career anxiety and reframes it as an advantage.</p>
+      </div>
+      <div class="info-card">
+        <h4>Complementary to Existing Quiz</h4>
+        <p>The Career Blocker Quiz feeds into the Archetype Quiz (and vice versa). Together they create a "full picture" that increases engagement and time-on-site.</p>
+      </div>
+      <div class="info-card">
+        <h4>Value-First Results</h4>
+        <p>Results include a radar chart, profile insight, hidden insight, and 3 actionable tips -- all free. CTAs feel like natural next steps, not sales pitches.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: Where to Use It -->
+  <div class="section">
+    <span class="section-label label-teal">Section 4</span>
+    <h2>Where to Use It</h2>
+    <p>Distribution channels and promotion strategies for maximum reach.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h4>TikTok (Primary)</h4>
+        <p>Generalist World's growth engine. Short-form videos with hooks like "What's really holding your career back?" driving to quiz link in bio. UTM tagged for attribution.</p>
+      </div>
+      <div class="info-card">
+        <h4>LinkedIn (B2B Adjacent)</h4>
+        <p>Share quiz results as conversation starters. Posts about career blockers perform well with the 25-45 professional audience. LinkedIn Ads for targeted reach.</p>
+      </div>
+      <div class="info-card">
+        <h4>Newsletter Cross-Promotion</h4>
+        <p>Promote the Career Blocker Quiz to existing 47,000+ subscribers. Position as a companion to the Archetype Quiz: "You know WHAT you are. Now find out what's in the way."</p>
+      </div>
+      <div class="info-card">
+        <h4>Paid Ads</h4>
+        <p>Facebook/Instagram and Google Ads targeting "career clarity," "multipotentialite," "generalist vs specialist," and "what job is right for me" queries.</p>
+      </div>
+      <div class="info-card">
+        <h4>Partner Cross-Promotion</h4>
+        <p>Share with partners (Canva, Notion, Zapier) for newsletter mentions. Quiz format aligns well with partner audience interests.</p>
+      </div>
+      <div class="info-card">
+        <h4>Community Events</h4>
+        <p>Promote at IRL meetups and online workshops. Community members share results, creating organic referrals from the 570+ existing member base.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: What You Get -->
+  <div class="section">
+    <span class="section-label label-coral">Section 5</span>
+    <h2>What You Get</h2>
+    <p>Complete deliverables included in the quiz funnel build.</p>
+
+    <ul class="check-list">
+      <li>Fully designed landing page with brand-matched visuals (Soft design mode)</li>
+      <li>7-question interactive quiz with 7 unique question types</li>
+      <li>5 result profiles with radar charts, insights, and temperature-specific CTAs</li>
+      <li>Email capture form with value-focused copy</li>
+      <li>14 automated emails across 5 sequences (Welcome, Cold, Warm, Hot, Win-Back)</li>
+      <li>Analytics dashboard at /admin with funnel metrics and UTM tracking</li>
+      <li>Vercel-ready deployment (Astro framework, Edge Functions, Supabase)</li>
+      <li>Strategy Pack: ad variations, 30-day social calendar, sales scripts</li>
+      <li>Client preview site with walkthrough, research, and all strategy documents</li>
+      <li>Complete copy documentation (landing page, quiz, emails, explainer)</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 6: Quick Stats -->
+  <div class="section">
+    <span class="section-label label-purple">Section 6</span>
+    <h2>Quick Stats</h2>
+    <p>Key numbers behind the Generalist World quiz funnel.</p>
+
+    <div class="data-grid">
+      <div class="data-card">
+        <div class="number">7</div>
+        <div class="label">Quiz Questions</div>
+      </div>
+      <div class="data-card">
+        <div class="number">5</div>
+        <div class="label">Result Profiles</div>
+      </div>
+      <div class="data-card">
+        <div class="number">14</div>
+        <div class="label">Email Sequences</div>
+      </div>
+      <div class="data-card">
+        <div class="number">3</div>
+        <div class="label">Temperature Bands</div>
+      </div>
+      <div class="data-card">
+        <div class="number">47K+</div>
+        <div class="label">Existing Subscribers</div>
+      </div>
+      <div class="data-card">
+        <div class="number">570+</div>
+        <div class="label">Community Members</div>
+      </div>
+      <div class="data-card">
+        <div class="number">39K+</div>
+        <div class="label">Previous Quiz Takers</div>
+      </div>
+      <div class="data-card">
+        <div class="number">~3 min</div>
+        <div class="label">Completion Time</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Generalist World -- Career Blocker Quiz Funnel Walkthrough<br>
+  Built with the Generalist World brand system
+</div>
+
+</body>
+</html>

@@ -6,7 +6,7 @@
 <title>Quiz Copy Explainer -- Generalist World Career Blocker Quiz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --primary: #5c0098;
@@ -16,29 +16,31 @@
     --secondary-light: #fff9d6;
     --accent: #e0b1ff;
     --accent-light: #f3e5ff;
-    --bg: #FFFFFF;
+    --bg: #f9efff;
     --bg-card: #FFFFFF;
     --text: #02061d;
     --text-secondary: #3a3a4a;
     --text-muted: #7a7a8a;
     --border: #e8ddf2;
+    --shadow-default: 3px 3px 0 1px #e8ddf2;
+    --shadow-hover: 3px 3px 0 1px #5c0098;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: 'Work Sans', -apple-system, sans-serif;
-    background: var(--bg);
+    background: #f9efff;
     color: var(--text-secondary);
     line-height: 1.65;
     font-size: 16px;
   }
   .page-header {
-    background: linear-gradient(135deg, #5c0098 0%, #470075 100%);
+    background: #5c0098;
     color: white;
-    padding: 60px 24px 48px;
+    padding: 120px 24px 80px;
     text-align: center;
   }
   .page-header h1 {
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'DM Serif Display', serif;
     font-size: 2.2rem;
     font-weight: 700;
     margin-bottom: 12px;
@@ -64,18 +66,20 @@
     justify-content: space-between;
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 15px;
     padding: 18px 24px;
     cursor: pointer;
     user-select: none;
-    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    transition: all 0.3s ease;
+    box-shadow: 3px 3px 0 1px #e8ddf2;
   }
   .section-toggle:hover {
-    box-shadow: 0 2px 8px rgba(92,0,152,0.08);
+    box-shadow: 3px 3px 0 1px #5c0098;
     border-color: rgba(92,0,152,0.2);
+    transform: translate3d(0, -3px, 0);
   }
   .section-toggle h2 {
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'DM Serif Display', serif;
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--text);
@@ -109,7 +113,7 @@
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-top: none;
-    border-radius: 0 0 12px 12px;
+    border-radius: 0 0 15px 15px;
     padding: 24px;
     margin-top: -12px;
     padding-top: 36px;
@@ -118,22 +122,25 @@
     display: block;
   }
   .section.open .section-toggle {
-    border-radius: 12px 12px 0 0;
+    border-radius: 15px 15px 0 0;
     border-bottom-color: transparent;
+    box-shadow: 3px 3px 0 1px #e8ddf2;
   }
   .explainer-card {
-    background: #FDFCFA;
+    background: var(--primary-light);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 15px;
     padding: 20px;
     margin-bottom: 16px;
+    box-shadow: 3px 3px 0 1px #e8ddf2;
+    transition: all 0.3s ease;
   }
   .explainer-card:last-child { margin-bottom: 0; }
   .explainer-card h3 {
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'DM Serif Display', serif;
     font-size: 1.05rem;
     font-weight: 600;
-    color: var(--text);
+    color: var(--primary);
     margin-bottom: 8px;
   }
   .explainer-card h4 {
@@ -169,7 +176,7 @@
     background: var(--primary-light);
     border-left: 3px solid var(--primary);
     padding: 14px 18px;
-    border-radius: 0 8px 8px 0;
+    border-radius: 0 15px 15px 0;
     margin: 12px 0;
     font-size: 0.95rem;
   }
@@ -185,21 +192,17 @@
     text-align: left;
   }
   .score-table th {
-    background: var(--primary-light);
-    color: var(--primary);
+    background: #5c0098;
+    color: white;
     font-weight: 600;
     font-family: 'Work Sans', sans-serif;
   }
-  .score-table tr:nth-child(even) { background: #FAFAF8; }
+  .score-table tr:nth-child(even) { background: var(--primary-light); }
   .footer {
-    text-align: center;
-    padding: 32px 24px;
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    border-top: 1px solid var(--border);
+    background: #5c0098; text-align: center; padding: 40px 24px; color: rgba(255,255,255,0.85); font-size: 0.85rem;
   }
   @media (max-width: 640px) {
-    .page-header { padding: 40px 16px 32px; }
+    .page-header { padding: 72px 16px 56px; }
     .page-header h1 { font-size: 1.6rem; }
     .container { padding: 24px 16px; }
     .section-toggle { padding: 14px 16px; }
@@ -208,6 +211,9 @@
     .score-table { font-size: 0.8rem; }
     .score-table th, .score-table td { padding: 6px 8px; }
   }
+
+  .footer a { color: #ffee32; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>

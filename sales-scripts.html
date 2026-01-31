@@ -6,7 +6,7 @@
 <title>Sales Scripts -- Generalist World Lead Conversations</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --primary: #5c0098;
@@ -15,12 +15,14 @@
     --secondary-light: #fff9d6;
     --accent: #e0b1ff;
     --accent-light: #f3e5ff;
-    --bg: #FFFFFF;
+    --bg: #f9efff;
     --bg-card: #FFFFFF;
     --text: #02061d;
     --text-secondary: #3a3a4a;
     --text-muted: #7a7a8a;
     --border: #e8ddf2;
+    --shadow-default: 3px 3px 0 1px #e8ddf2;
+    --shadow-hover: 3px 3px 0 1px #5c0098;
     --hot: #2D9C6F;
     --hot-bg: #E8F7F0;
     --warm: #E5A74E;
@@ -29,9 +31,9 @@
     --cold-bg: #EBF2FB;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Work Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text-secondary); line-height: 1.65; font-size: 16px; }
-  .page-header { background: linear-gradient(135deg, #5c0098 0%, #470075 100%); color: white; padding: 60px 24px 48px; text-align: center; }
-  .page-header h1 { font-family: 'Work Sans', sans-serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+  body { font-family: 'Work Sans', -apple-system, sans-serif; background: #f9efff; color: var(--text-secondary); line-height: 1.65; font-size: 16px; }
+  .page-header { background: #5c0098; color: white; padding: 120px 24px 80px; text-align: center; }
+  .page-header h1 { font-family: 'DM Serif Display', serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
   .page-header p { font-size: 1.05rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
   .container { max-width: 860px; margin: 0 auto; padding: 40px 24px 60px; }
 
@@ -41,22 +43,24 @@
     padding-bottom: 12px; border-bottom: 2px solid var(--border);
   }
   .temp-badge {
-    display: inline-flex; padding: 4px 14px; border-radius: 999px;
-    font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+    display: inline-flex; padding: 6px 16px; border-radius: 999px;
+    font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
   }
   .badge-hot { background: var(--hot-bg); color: var(--hot); }
   .badge-warm { background: var(--warm-bg); color: var(--warm); }
   .badge-cold { background: var(--cold-bg); color: var(--cold); }
-  .script-header h2 { font-family: 'Work Sans', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--text); }
+  .script-header h2 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--primary); }
 
   .script-meta { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 20px; }
 
   .conversation-block {
-    background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+    background: var(--bg-card); border: 1px solid var(--border); border-top: 4px solid var(--primary); border-radius: 15px;
     padding: 24px; margin-bottom: 16px;
+      box-shadow: 3px 3px 0 1px #e8ddf2;
+    transition: all 0.3s ease;
   }
   .conversation-block h3 {
-    font-family: 'Work Sans', sans-serif; font-size: 1.05rem; font-weight: 600;
+    font-family: 'DM Serif Display', serif; font-size: 1.05rem; font-weight: 600;
     color: var(--primary); margin-bottom: 12px;
   }
   .conversation-block h4 {
@@ -78,33 +82,38 @@
 
   .tip-box {
     background: var(--primary-light); border-left: 3px solid var(--primary);
-    padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; font-size: 0.9rem;
+    padding: 14px 18px; border-radius: 0 15px 15px 0; margin: 16px 0; font-size: 0.9rem;
   }
 
   /* OBJECTIONS TABLE */
   .objection-section { margin-top: 48px; }
-  .objection-section h2 { font-family: 'Work Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 20px; }
+  .objection-section h2 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; }
   .objection-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
   .objection-table th {
-    background: var(--primary-light); color: var(--primary); padding: 12px 16px;
+    background: #5c0098; color: white; padding: 12px 16px;
     text-align: left; font-weight: 600; font-family: 'Work Sans', sans-serif;
   }
   .objection-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  .objection-table tr:hover td { background: #FDFCFA; }
+  .objection-table tr:hover td { background: var(--primary-light); }
   .objection-label { font-weight: 600; color: var(--text); }
 
-  .footer { text-align: center; padding: 32px 24px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+  .footer { background: #5c0098; text-align: center; padding: 40px 24px; color: rgba(255,255,255,0.85); font-size: 0.85rem; }
 
   @media (max-width: 640px) {
-    .page-header { padding: 40px 16px 32px; }
+    .page-header { padding: 72px 16px 56px; }
     .page-header h1 { font-size: 1.6rem; }
     .container { padding: 24px 16px; }
-    .conversation-block { padding: 18px; }
+    .conversation-block { padding: 18px;     box-shadow: 3px 3px 0 1px #e8ddf2;
+    transition: all 0.3s ease;
+  }
     .dialogue-line { flex-direction: column; gap: 4px; }
     .dialogue-speaker { min-width: auto; }
     .objection-table { font-size: 0.8rem; }
     .objection-table th, .objection-table td { padding: 8px 10px; }
   }
+
+  .footer a { color: #ffee32; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>

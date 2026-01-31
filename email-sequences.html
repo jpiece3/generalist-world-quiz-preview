@@ -6,7 +6,7 @@
 <title>Email Sequences -- Generalist World Career Blocker Quiz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --primary: #5c0098;
@@ -16,12 +16,14 @@
     --secondary-light: #fff9d6;
     --accent: #e0b1ff;
     --accent-light: #f3e5ff;
-    --bg: #FFFFFF;
+    --bg: #f9efff;
     --bg-card: #FFFFFF;
     --text: #02061d;
     --text-secondary: #3a3a4a;
     --text-muted: #7a7a8a;
     --border: #e8ddf2;
+    --shadow-default: 3px 3px 0 1px #e8ddf2;
+    --shadow-hover: 3px 3px 0 1px #5c0098;
     --hot: #2D9C6F;
     --hot-bg: #E8F7F0;
     --warm: #E5A74E;
@@ -34,21 +36,21 @@
 
   body {
     font-family: 'Work Sans', -apple-system, sans-serif;
-    background: var(--bg);
+    background: #f9efff;
     color: var(--text-secondary);
     line-height: 1.65;
     font-size: 16px;
   }
 
   .page-header {
-    background: linear-gradient(135deg, #5c0098 0%, #470075 100%);
+    background: #5c0098;
     color: white;
-    padding: 60px 24px 48px;
+    padding: 120px 24px 80px;
     text-align: center;
   }
 
   .page-header h1 {
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'DM Serif Display', serif;
     font-size: 2.2rem;
     font-weight: 700;
     margin-bottom: 12px;
@@ -109,9 +111,9 @@
   .sequence-badge {
     display: inline-flex;
     align-items: center;
-    padding: 4px 14px;
+    padding: 6px 16px;
     border-radius: 999px;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -124,10 +126,10 @@
   .badge-winback { background: var(--accent-light); color: #8a2be2; }
 
   .sequence-header h2 {
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'DM Serif Display', serif;
     font-size: 1.4rem;
     font-weight: 700;
-    color: var(--text);
+    color: var(--primary);
   }
 
   .sequence-meta {
@@ -139,14 +141,14 @@
   .email-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 15px;
     margin-bottom: 20px;
     overflow: hidden;
     transition: box-shadow 0.2s ease;
   }
 
   .email-card:hover {
-    box-shadow: 0 4px 12px rgba(92,0,152,0.08), 0 8px 24px rgba(92,0,152,0.04);
+    box-shadow: 3px 3px 0 1px #5c0098, 0 8px 24px rgba(92,0,152,0.04);
   }
 
   .email-card-header {
@@ -160,7 +162,7 @@
   }
 
   .email-card-header:hover {
-    background: #FAFAF8;
+    background: var(--primary-light);
   }
 
   .email-info {
@@ -187,7 +189,7 @@
   }
 
   .email-subject {
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'DM Serif Display', serif;
     font-weight: 600;
     font-size: 1rem;
     color: var(--text);
@@ -220,7 +222,7 @@
     display: none;
     padding: 20px 24px 24px;
     border-top: 1px solid var(--border);
-    background: #FDFCFA;
+    background: var(--primary-light);
   }
 
   .email-card.open .email-body {
@@ -246,7 +248,7 @@
   .email-content {
     background: white;
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 15px;
     padding: 24px;
     font-size: 0.95rem;
     line-height: 1.7;
@@ -265,14 +267,16 @@
   .flow-diagram {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 15px;
     padding: 32px 24px;
     margin-bottom: 48px;
     text-align: center;
+      box-shadow: 3px 3px 0 1px #e8ddf2;
+    transition: all 0.3s ease;
   }
 
   .flow-diagram h3 {
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'DM Serif Display', serif;
     font-size: 1.2rem;
     font-weight: 700;
     color: var(--text);
@@ -289,7 +293,7 @@
 
   .flow-step {
     padding: 8px 16px;
-    border-radius: 8px;
+    border-radius: 15px;
     font-size: 0.85rem;
     font-weight: 600;
     font-family: 'Work Sans', sans-serif;
@@ -307,15 +311,11 @@
   .flow-winback { background: var(--accent-light); color: #8a2be2; }
 
   .footer {
-    text-align: center;
-    padding: 32px 24px;
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    border-top: 1px solid var(--border);
+    background: #5c0098; text-align: center; padding: 40px 24px; color: rgba(255,255,255,0.85); font-size: 0.85rem;
   }
 
   @media (max-width: 640px) {
-    .page-header { padding: 40px 16px 32px; }
+    .page-header { padding: 72px 16px 56px; }
     .page-header h1 { font-size: 1.6rem; }
     .stats-bar { gap: 16px; }
     .stat-item .number { font-size: 1.2rem; }
@@ -328,6 +328,9 @@
     .flow-steps { flex-direction: column; gap: 4px; }
     .flow-arrow { transform: rotate(90deg); }
   }
+
+  .footer a { color: #ffee32; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>

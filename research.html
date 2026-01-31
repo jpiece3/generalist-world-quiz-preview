@@ -6,7 +6,7 @@
 <title>Research Report -- Generalist World Career Blocker Quiz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --primary: #5c0098;
@@ -16,7 +16,7 @@
     --secondary-light: #fff9d6;
     --accent: #e0b1ff;
     --accent-light: #f3e5ff;
-    --bg: #FFFFFF;
+    --bg: #f9efff;
     --bg-card: #FFFFFF;
     --text: #02061d;
     --text-secondary: #3a3a4a;
@@ -28,6 +28,8 @@
     --warm-bg: #FDF5E8;
     --cold: #5B8FD4;
     --cold-bg: #EBF2FB;
+    --shadow-default: 3px 3px 0 1px #e8ddf2;
+    --shadow-hover: 3px 3px 0 1px #5c0098;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -41,9 +43,9 @@
 
   /* HERO */
   .hero {
-    background: linear-gradient(135deg, #5c0098 0%, #470075 60%, #3a005f 100%);
+    background: #5c0098;
     color: white;
-    padding: 80px 24px 64px;
+    padding: 120px 24px 80px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -53,46 +55,46 @@
     position: absolute;
     top: -120px;
     right: -100px;
-    width: 350px;
-    height: 350px;
+    width: 400px;
+    height: 400px;
     border-radius: 50%;
-    background: rgba(224,177,255,0.12);
-    filter: blur(60px);
+    background: rgba(224,177,255,0.2);
+    filter: blur(80px);
     pointer-events: none;
   }
   .hero::after {
     content: '';
     position: absolute;
-    bottom: -80px;
+    bottom: -100px;
     left: -80px;
-    width: 280px;
-    height: 280px;
+    width: 350px;
+    height: 350px;
     border-radius: 50%;
-    background: rgba(255,238,50,0.1);
-    filter: blur(50px);
+    background: rgba(224,177,255,0.15);
+    filter: blur(70px);
     pointer-events: none;
   }
   .hero-badge {
     display: inline-block;
-    padding: 4px 16px;
-    border-radius: 999px;
+    padding: 6px 16px;
+    border-radius: 15px;
     background: rgba(255,255,255,0.15);
     font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.05em;
     text-transform: uppercase;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     position: relative;
     z-index: 1;
   }
   .hero h1 {
-    font-family: 'Work Sans', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 700;
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.5rem, 1.5rem + 3vw, 4rem);
+    font-weight: 400;
     margin-bottom: 12px;
-    letter-spacing: -0.02em;
     position: relative;
     z-index: 1;
+    line-height: 1.15;
   }
   .hero p {
     font-size: 1.1rem;
@@ -105,14 +107,14 @@
   .back-link {
     display: inline-block;
     margin-top: 20px;
-    color: rgba(255,255,255,0.8);
+    color: #ffee32;
     text-decoration: none;
     font-size: 0.9rem;
     position: relative;
     z-index: 1;
-    transition: color 0.2s ease;
+    transition: opacity 0.2s ease;
   }
-  .back-link:hover { color: white; }
+  .back-link:hover { opacity: 0.8; }
 
   /* CONTAINER */
   .container {
@@ -126,12 +128,11 @@
     margin-bottom: 48px;
   }
   .section-title {
-    font-family: 'Work Sans', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text);
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: var(--primary);
     margin-bottom: 8px;
-    letter-spacing: -0.01em;
   }
   .section-subtitle {
     font-size: 0.95rem;
@@ -143,17 +144,19 @@
   .card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-top: 4px solid var(--primary);
+    border-radius: 15px;
     padding: 28px;
     margin-bottom: 16px;
     position: relative;
     overflow: hidden;
+    box-shadow: var(--shadow-default);
   }
   .card h3 {
-    font-family: 'Work Sans', sans-serif;
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--text);
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--primary);
     margin-bottom: 10px;
   }
   .card p {
@@ -186,9 +189,9 @@
   /* TAG BADGES */
   .tag {
     display: inline-block;
-    padding: 3px 10px;
-    border-radius: 999px;
-    font-size: 0.72rem;
+    padding: 6px 16px;
+    border-radius: 15px;
+    font-size: 0.8rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.04em;
@@ -197,7 +200,7 @@
   }
   .tag-primary { background: var(--primary-light); color: var(--primary); }
   .tag-secondary { background: var(--secondary-light); color: #b59400; }
-  .tag-accent { background: var(--accent-light); color: #8a2be2; }
+  .tag-accent { background: var(--accent-light); color: #5c0098; }
   .tag-hot { background: var(--hot-bg); color: var(--hot); }
   .tag-warm { background: var(--warm-bg); color: var(--warm); }
   .tag-cold { background: var(--cold-bg); color: var(--cold); }
@@ -220,10 +223,16 @@
   .segment-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 15px;
     padding: 24px;
     position: relative;
     overflow: hidden;
+    box-shadow: var(--shadow-default);
+    transition: all 0.3s ease;
+  }
+  .segment-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translate3d(0, -3px, 0);
   }
   .segment-card::before {
     content: '';
@@ -231,15 +240,15 @@
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
+    height: 4px;
   }
   .segment-card.hot::before { background: var(--hot); }
   .segment-card.warm::before { background: var(--warm); }
   .segment-card.cold::before { background: var(--cold); }
   .segment-card h3 {
-    font-family: 'Work Sans', sans-serif;
-    font-size: 1.05rem;
-    font-weight: 700;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
     color: var(--text);
     margin-bottom: 6px;
   }
@@ -286,14 +295,21 @@
   .profile-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-top: 4px solid var(--primary);
+    border-radius: 15px;
     padding: 24px;
+    box-shadow: var(--shadow-default);
+    transition: all 0.3s ease;
+  }
+  .profile-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translate3d(0, -3px, 0);
   }
   .profile-card h4 {
-    font-family: 'Work Sans', sans-serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--text);
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    color: var(--primary);
     margin-bottom: 8px;
   }
   .profile-card p {
@@ -312,13 +328,18 @@
   .angle-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 15px;
     padding: 22px;
+    box-shadow: var(--shadow-default);
+    transition: all 0.3s ease;
+  }
+  .angle-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translate3d(0, -3px, 0);
   }
   .angle-card .angle-hook {
-    font-family: 'Work Sans', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
     color: var(--primary);
     margin-bottom: 8px;
     line-height: 1.4;
@@ -342,19 +363,20 @@
     border-collapse: collapse;
     font-size: 0.88rem;
     background: var(--bg-card);
-    border-radius: 16px;
+    border-radius: 15px;
     overflow: hidden;
     border: 1px solid var(--border);
+    box-shadow: var(--shadow-default);
   }
   .keyword-table thead {
-    background: var(--primary-light);
+    background: #5c0098;
   }
   .keyword-table th {
     padding: 12px 16px;
     text-align: left;
     font-family: 'Work Sans', sans-serif;
     font-weight: 600;
-    color: var(--primary);
+    color: white;
     font-size: 0.82rem;
     text-transform: uppercase;
     letter-spacing: 0.04em;
@@ -363,6 +385,7 @@
     padding: 10px 16px;
     border-bottom: 1px solid var(--border);
   }
+  .keyword-table tr:nth-child(even) td { background: var(--primary-light); }
   .keyword-table tr:last-child td { border-bottom: none; }
   .keyword-table .vol {
     font-weight: 600;
@@ -373,15 +396,21 @@
   .competitor {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 16px;
+    border-radius: 15px;
     padding: 22px;
     margin-bottom: 12px;
+    box-shadow: var(--shadow-default);
+    transition: all 0.3s ease;
+  }
+  .competitor:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translate3d(0, -3px, 0);
   }
   .competitor h4 {
-    font-family: 'Work Sans', sans-serif;
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--text);
+    font-family: 'DM Serif Display', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--primary);
     margin-bottom: 6px;
   }
   .competitor p {
@@ -406,10 +435,10 @@
     display: inline-block;
     background: var(--primary-light);
     color: var(--primary);
-    padding: 6px 14px;
-    border-radius: 999px;
+    padding: 6px 16px;
+    border-radius: 15px;
     font-size: 0.82rem;
-    font-weight: 500;
+    font-weight: 600;
   }
   .avoid-phrases {
     display: flex;
@@ -420,10 +449,10 @@
     display: inline-block;
     background: #FEE2E2;
     color: #DC2626;
-    padding: 6px 14px;
-    border-radius: 999px;
+    padding: 6px 16px;
+    border-radius: 15px;
     font-size: 0.82rem;
-    font-weight: 500;
+    font-weight: 600;
     text-decoration: line-through;
     text-decoration-color: rgba(220,38,38,0.4);
   }
@@ -437,14 +466,15 @@
   .moat-item {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-top: 4px solid var(--primary);
+    border-radius: 15px;
     padding: 18px;
     text-align: center;
+    box-shadow: var(--shadow-default);
   }
   .moat-item .moat-stat {
-    font-family: 'Work Sans', sans-serif;
+    font-family: 'DM Serif Display', serif;
     font-size: 1.4rem;
-    font-weight: 700;
     color: var(--primary);
     margin-bottom: 4px;
   }
@@ -455,18 +485,18 @@
 
   /* FOOTER */
   .footer {
+    background: #5c0098;
     text-align: center;
-    padding: 32px 24px;
-    color: var(--text-muted);
+    padding: 40px 24px;
+    color: rgba(255,255,255,0.85);
     font-size: 0.85rem;
-    border-top: 1px solid var(--border);
   }
-  .footer a { color: var(--primary); text-decoration: none; }
+  .footer a { color: #ffee32; text-decoration: none; }
   .footer a:hover { text-decoration: underline; }
 
   @media (max-width: 640px) {
-    .hero { padding: 48px 16px 40px; }
-    .hero h1 { font-size: 1.8rem; }
+    .hero { padding: 72px 16px 56px; }
+    .hero h1 { font-size: 2rem; }
     .container { padding: 32px 16px 48px; }
     .grid-2 { grid-template-columns: 1fr; }
     .grid-3 { grid-template-columns: 1fr; }
@@ -507,7 +537,7 @@
       </table>
     </div>
 
-    <h3 style="font-family: 'Work Sans', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--text); margin: 24px 0 14px;">Products & Services</h3>
+    <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.15rem; font-weight: 400; color: var(--primary); margin: 24px 0 14px;">Products & Services</h3>
 
     <div class="grid-2">
       <div class="card">
@@ -743,7 +773,7 @@
     <h2 class="section-title">SEO Keywords</h2>
     <p class="section-subtitle">Search volume data from DataForSEO. Sorted by relevance and opportunity.</p>
 
-    <h3 style="font-family: 'Work Sans', sans-serif; font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 12px;">Primary Keywords</h3>
+    <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.05rem; font-weight: 400; color: var(--primary); margin-bottom: 12px;">Primary Keywords</h3>
     <table class="keyword-table">
       <thead>
         <tr><th>Keyword</th><th>Monthly Vol (US)</th><th>KD</th><th>Intent</th></tr>
@@ -757,7 +787,7 @@
       </tbody>
     </table>
 
-    <h3 style="font-family: 'Work Sans', sans-serif; font-size: 1rem; font-weight: 600; color: var(--text); margin: 24px 0 12px;">Secondary & Long-Tail Keywords</h3>
+    <h3 style="font-family: 'DM Serif Display', serif; font-size: 1.05rem; font-weight: 400; color: var(--primary); margin: 24px 0 12px;">Secondary & Long-Tail Keywords</h3>
     <table class="keyword-table">
       <thead>
         <tr><th>Keyword</th><th>Monthly Vol (US)</th><th>KD</th><th>Intent</th></tr>

@@ -6,7 +6,7 @@
 <title>Ad Strategy -- Generalist World Career Blocker Quiz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --primary: #5c0098;
@@ -15,21 +15,23 @@
     --secondary-light: #fff9d6;
     --accent: #e0b1ff;
     --accent-light: #f3e5ff;
-    --bg: #FFFFFF;
+    --bg: #f9efff;
     --bg-card: #FFFFFF;
     --text: #02061d;
     --text-secondary: #3a3a4a;
     --text-muted: #7a7a8a;
     --border: #e8ddf2;
+    --shadow-default: 3px 3px 0 1px #e8ddf2;
+    --shadow-hover: 3px 3px 0 1px #5c0098;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Work Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text-secondary); line-height: 1.65; font-size: 16px; }
+  body { font-family: 'Work Sans', -apple-system, sans-serif; background: #f9efff; color: var(--text-secondary); line-height: 1.65; font-size: 16px; }
 
   .page-header {
-    background: linear-gradient(135deg, #5c0098 0%, #470075 100%);
-    color: white; padding: 60px 24px 48px; text-align: center;
+    background: #5c0098;
+    color: white; padding: 120px 24px 80px; text-align: center;
   }
-  .page-header h1 { font-family: 'Work Sans', sans-serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+  .page-header h1 { font-family: 'DM Serif Display', serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
   .page-header p { font-size: 1.05rem; opacity: 0.9; max-width: 600px; margin: 0 auto; }
 
   .container { max-width: 880px; margin: 0 auto; padding: 40px 24px 60px; }
@@ -41,34 +43,34 @@
   }
   .platform-icon {
     display: flex; align-items: center; justify-content: center;
-    width: 40px; height: 40px; border-radius: 10px; font-size: 1.3rem; flex-shrink: 0;
+    width: 40px; height: 40px; border-radius: 15px; font-size: 1.3rem; flex-shrink: 0;
   }
   .icon-google { background: #E8F0FE; }
   .icon-meta { background: #EBE8FF; }
   .icon-linkedin { background: #E1F0FF; }
-  .platform-header h2 { font-family: 'Work Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text); }
+  .platform-header h2 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--primary); }
 
   .ad-card {
-    background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+    background: var(--bg-card); border: 1px solid var(--border); border-top: 4px solid var(--primary); border-radius: 15px;
     padding: 24px; margin-bottom: 16px; transition: box-shadow 0.2s ease;
   }
-  .ad-card:hover { box-shadow: 0 4px 16px rgba(92,0,152,0.06); }
+  .ad-card:hover { box-shadow: 3px 3px 0 1px #5c0098; }
   .ad-card-label {
-    display: inline-block; padding: 3px 10px; border-radius: 999px;
-    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    display: inline-block; padding: 6px 16px; border-radius: 999px;
+    font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
     letter-spacing: 0.05em; margin-bottom: 12px;
   }
   .label-variation { background: var(--primary-light); color: var(--primary); }
   .label-hook { background: var(--secondary-light); color: #b59400; }
 
-  .ad-card h3 { font-family: 'Work Sans', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+  .ad-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; font-weight: 600; color: var(--primary); margin-bottom: 10px; }
   .ad-card h4 { font-family: 'Work Sans', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--primary); margin: 12px 0 6px; }
   .ad-card p { font-size: 0.95rem; margin-bottom: 8px; }
   .ad-card ul { padding-left: 20px; margin-bottom: 12px; font-size: 0.95rem; }
   .ad-card li { margin-bottom: 4px; }
 
   .ad-preview {
-    background: #F4F3F0; border-radius: 10px; padding: 16px 20px;
+    background: var(--primary-light); border-radius: 15px; padding: 16px 20px;
     margin: 12px 0; font-size: 0.9rem; border-left: 3px solid var(--primary);
   }
   .ad-preview .ad-headline { font-family: 'Work Sans', sans-serif; font-weight: 700; color: var(--text); font-size: 1rem; margin-bottom: 4px; }
@@ -76,30 +78,37 @@
   .ad-preview .ad-cta { color: var(--primary); font-weight: 600; font-size: 0.85rem; }
 
   .ab-section { margin-top: 48px; }
-  .ab-section h2 { font-family: 'Work Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 20px; }
+  .ab-section h2 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--primary); margin-bottom: 20px; }
 
   .ab-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
   .ab-card {
-    background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px;
+    background: var(--bg-card); border: 1px solid var(--border); border-top: 4px solid var(--primary); border-radius: 15px; padding: 20px;
+      box-shadow: 3px 3px 0 1px #e8ddf2;
+    transition: all 0.3s ease;
   }
-  .ab-card h4 { font-family: 'Work Sans', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+  .ab-card h4 { font-family: 'DM Serif Display', serif; font-size: 0.95rem; font-weight: 600; color: var(--primary); margin-bottom: 8px; }
   .ab-card p { font-size: 0.9rem; }
 
   .targeting-box {
-    background: var(--primary-light); border-radius: 10px; padding: 16px 20px; margin: 12px 0; font-size: 0.9rem;
+    background: var(--primary-light); border-radius: 15px; padding: 16px 20px; margin: 12px 0; font-size: 0.9rem;
   }
   .targeting-box strong { color: var(--primary); }
 
-  .footer { text-align: center; padding: 32px 24px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+  .footer { background: #5c0098; text-align: center; padding: 40px 24px; color: rgba(255,255,255,0.85); font-size: 0.85rem; }
 
   @media (max-width: 640px) {
-    .page-header { padding: 40px 16px 32px; }
+    .page-header { padding: 72px 16px 56px; }
     .page-header h1 { font-size: 1.6rem; }
     .container { padding: 24px 16px; }
     .platform-header h2 { font-size: 1.2rem; }
-    .ad-card { padding: 18px; }
+    .ad-card { padding: 18px;     box-shadow: 3px 3px 0 1px #e8ddf2;
+    transition: all 0.3s ease;
+  }
     .ab-grid { grid-template-columns: 1fr; }
   }
+
+  .footer a { color: #ffee32; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>

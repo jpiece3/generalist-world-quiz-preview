@@ -6,7 +6,7 @@
 <title>Ways to Grow -- Generalist World Quiz Funnel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --primary: #5c0098;
@@ -15,68 +15,70 @@
     --secondary-light: #fff9d6;
     --accent: #e0b1ff;
     --accent-light: #f3e5ff;
-    --bg: #FFFFFF;
+    --bg: #f9efff;
     --bg-card: #FFFFFF;
     --text: #02061d;
     --text-secondary: #3a3a4a;
     --text-muted: #7a7a8a;
     --border: #e8ddf2;
+    --shadow-default: 3px 3px 0 1px #e8ddf2;
+    --shadow-hover: 3px 3px 0 1px #5c0098;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Work Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text-secondary); line-height: 1.65; font-size: 16px; }
-  .page-header { background: linear-gradient(135deg, #5c0098 0%, #470075 100%); color: white; padding: 60px 24px 48px; text-align: center; }
-  .page-header h1 { font-family: 'Work Sans', sans-serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+  body { font-family: 'Work Sans', -apple-system, sans-serif; background: #f9efff; color: var(--text-secondary); line-height: 1.65; font-size: 16px; }
+  .page-header { background: #5c0098; color: white; padding: 120px 24px 80px; text-align: center; }
+  .page-header h1 { font-family: 'DM Serif Display', serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
   .page-header p { font-size: 1.05rem; opacity: 0.9; max-width: 620px; margin: 0 auto; }
   .container { max-width: 880px; margin: 0 auto; padding: 40px 24px 60px; }
 
   .section { margin-bottom: 48px; }
   .section-label {
-    display: inline-block; padding: 3px 12px; border-radius: 999px;
-    font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+    display: inline-block; padding: 6px 16px; border-radius: 999px;
+    font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
     letter-spacing: 0.06em; margin-bottom: 12px;
   }
   .label-included { background: var(--primary-light); color: var(--primary); }
   .label-addon { background: var(--secondary-light); color: #b59400; }
 
-  .section h2 { font-family: 'Work Sans', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+  .section h2 { font-family: 'DM Serif Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
   .section > p { font-size: 1rem; margin-bottom: 24px; }
 
   /* INCLUDED FEATURES */
   .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
   .feature-card {
-    background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+    background: var(--bg-card); border: 1px solid var(--border); border-top: 4px solid var(--primary); border-radius: 15px;
     padding: 28px; position: relative; overflow: hidden;
     transition: box-shadow 0.2s ease, transform 0.2s ease;
   }
-  .feature-card:hover { box-shadow: 0 4px 16px rgba(92,0,152,0.08); transform: translateY(-2px); }
+  .feature-card:hover { box-shadow: 3px 3px 0 1px #5c0098; transform: translate3d(0, -3px, 0); }
   .feature-card::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
     background: linear-gradient(90deg, var(--primary), var(--accent));
   }
   .feature-icon { font-size: 2rem; margin-bottom: 12px; }
-  .feature-card h3 { font-family: 'Work Sans', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .feature-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
   .feature-card p { font-size: 0.9rem; line-height: 1.6; }
   .feature-card ul { padding-left: 18px; font-size: 0.9rem; margin-top: 8px; }
   .feature-card li { margin-bottom: 4px; }
   .included-badge {
-    display: inline-block; margin-top: 12px; padding: 3px 10px;
+    display: inline-block; margin-top: 12px; padding: 6px 16px;
     border-radius: 999px; background: var(--primary-light); color: var(--primary);
-    font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+    font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
   }
 
   /* ADD-ON CARDS */
   .addon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
   .addon-card {
-    background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+    background: var(--bg-card); border: 1px solid var(--border); border-top: 4px solid var(--primary); border-radius: 15px;
     padding: 28px; position: relative; overflow: hidden;
     transition: box-shadow 0.2s ease, transform 0.2s ease;
   }
-  .addon-card:hover { box-shadow: 0 4px 16px rgba(224,177,255,0.08); transform: translateY(-2px); }
+  .addon-card:hover { box-shadow: 3px 3px 0 1px #5c0098; transform: translate3d(0, -3px, 0); }
   .addon-card::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
     background: linear-gradient(90deg, var(--secondary), #E5A74E);
   }
-  .addon-card h3 { font-family: 'Work Sans', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .addon-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 4px; }
   .addon-price {
     font-family: 'Work Sans', sans-serif; font-size: 1.3rem; font-weight: 700;
     color: #b59400; margin-bottom: 10px;
@@ -85,28 +87,33 @@
   .addon-card ul { padding-left: 18px; font-size: 0.85rem; }
   .addon-card li { margin-bottom: 4px; }
   .addon-badge {
-    display: inline-block; margin-top: 12px; padding: 3px 10px;
+    display: inline-block; margin-top: 12px; padding: 6px 16px;
     border-radius: 999px; background: var(--secondary-light); color: #b59400;
-    font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+    font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
   }
 
   /* VALUE NOTE */
   .value-note {
     background: var(--primary-light); border: 1px solid rgba(92,0,152,0.15);
-    border-radius: 12px; padding: 24px; text-align: center; margin-top: 32px;
+    border-radius: 15px; padding: 24px; text-align: center; margin-top: 32px;
   }
-  .value-note h3 { font-family: 'Work Sans', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+  .value-note h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
   .value-note p { font-size: 0.95rem; max-width: 600px; margin: 0 auto; }
 
-  .footer { text-align: center; padding: 32px 24px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+  .footer { background: #5c0098; text-align: center; padding: 40px 24px; color: rgba(255,255,255,0.85); font-size: 0.85rem; }
 
   @media (max-width: 640px) {
-    .page-header { padding: 40px 16px 32px; }
+    .page-header { padding: 72px 16px 56px; }
     .page-header h1 { font-size: 1.6rem; }
     .container { padding: 24px 16px; }
     .feature-grid, .addon-grid { grid-template-columns: 1fr; }
-    .feature-card, .addon-card { padding: 20px; }
+    .feature-card, .addon-card { padding: 20px;     box-shadow: 3px 3px 0 1px #e8ddf2;
+    transition: all 0.3s ease;
   }
+  }
+
+  .footer a { color: #ffee32; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>

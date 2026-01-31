@@ -6,7 +6,7 @@
 <title>30-Day Social Content Calendar -- Generalist World</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --primary: #5c0098;
@@ -15,36 +15,42 @@
     --secondary-light: #fff9d6;
     --accent: #e0b1ff;
     --accent-light: #f3e5ff;
-    --bg: #FFFFFF;
+    --bg: #f9efff;
     --bg-card: #FFFFFF;
     --text: #02061d;
     --text-secondary: #3a3a4a;
     --text-muted: #7a7a8a;
     --border: #e8ddf2;
+    --shadow-default: 3px 3px 0 1px #e8ddf2;
+    --shadow-hover: 3px 3px 0 1px #5c0098;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Work Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text-secondary); line-height: 1.65; font-size: 16px; }
-  .page-header { background: linear-gradient(135deg, #5c0098 0%, #470075 100%); color: white; padding: 60px 24px 48px; text-align: center; }
-  .page-header h1 { font-family: 'Work Sans', sans-serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+  body { font-family: 'Work Sans', -apple-system, sans-serif; background: #f9efff; color: var(--text-secondary); line-height: 1.65; font-size: 16px; }
+  .page-header { background: #5c0098; color: white; padding: 120px 24px 80px; text-align: center; }
+  .page-header h1 { font-family: 'DM Serif Display', serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
   .page-header p { font-size: 1.05rem; opacity: 0.9; max-width: 620px; margin: 0 auto; }
   .container { max-width: 920px; margin: 0 auto; padding: 40px 24px 60px; }
 
   .section { margin-bottom: 48px; }
-  .section h2 { font-family: 'Work Sans', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text); margin-bottom: 16px; }
+  .section h2 { font-family: 'DM Serif Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--primary); margin-bottom: 16px; }
   .section > p { margin-bottom: 20px; font-size: 1rem; }
 
   /* PILLARS */
   .pillar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 32px; }
-  .pillar-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
-  .pillar-card:hover { box-shadow: 0 4px 12px rgba(92,0,152,0.06); }
+  .pillar-card { background: var(--bg-card); border: 1px solid var(--border); border-top: 4px solid var(--primary); border-radius: 15px; padding: 20px; text-align: center;     box-shadow: 3px 3px 0 1px #e8ddf2;
+    transition: all 0.3s ease;
+  }
+  .pillar-card:hover { box-shadow: 3px 3px 0 1px #5c0098; }
   .pillar-emoji { font-size: 2rem; margin-bottom: 8px; }
-  .pillar-card h4 { font-family: 'Work Sans', sans-serif; font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .pillar-card h4 { font-family: 'DM Serif Display', serif; font-size: 1rem; font-weight: 600; color: var(--primary); margin-bottom: 6px; }
   .pillar-card p { font-size: 0.85rem; }
 
   /* PLATFORM STRATEGY */
   .platform-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-bottom: 32px; }
-  .platform-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
-  .platform-card h3 { font-family: 'Work Sans', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+  .platform-card { background: var(--bg-card); border: 1px solid var(--border); border-top: 4px solid var(--primary); border-radius: 15px; padding: 24px;     box-shadow: 3px 3px 0 1px #e8ddf2;
+    transition: all 0.3s ease;
+  }
+  .platform-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
   .platform-card h4 { font-family: 'Work Sans', sans-serif; font-size: 0.9rem; font-weight: 600; color: var(--primary); margin: 10px 0 6px; }
   .platform-card ul { padding-left: 18px; font-size: 0.9rem; }
   .platform-card li { margin-bottom: 4px; }
@@ -53,17 +59,17 @@
   /* WEEK TABLES */
   .week-section { margin-bottom: 36px; }
   .week-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-  .week-badge { display: inline-flex; padding: 4px 14px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
+  .week-badge { display: inline-flex; padding: 6px 16px; border-radius: 999px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; }
   .week-1 { background: var(--primary-light); color: var(--primary); }
   .week-2 { background: var(--secondary-light); color: #b59400; }
   .week-3 { background: var(--accent-light); color: #8a2be2; }
   .week-4 { background: #E1F0FF; color: #3B7DD8; }
-  .week-header h3 { font-family: 'Work Sans', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--text); }
+  .week-header h3 { font-family: 'DM Serif Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--primary); }
 
   .post-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
-  .post-table th { background: var(--primary-light); color: var(--primary); padding: 10px 12px; text-align: left; font-weight: 600; font-family: 'Work Sans', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .post-table th { background: #5c0098; color: white; padding: 10px 12px; text-align: left; font-weight: 600; font-family: 'Work Sans', sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
   .post-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  .post-table tr:hover td { background: #FDFCFA; }
+  .post-table tr:hover td { background: var(--primary-light); }
   .post-day { font-weight: 600; color: var(--text); white-space: nowrap; }
   .post-platform { font-size: 0.8rem; color: var(--text-muted); }
   .post-pillar { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 0.7rem; font-weight: 600; }
@@ -73,10 +79,10 @@
   .p-education { background: #E1F0FF; color: #3B7DD8; }
   .p-social { background: #FFF3E0; color: #E5A74E; }
 
-  .footer { text-align: center; padding: 32px 24px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
+  .footer { background: #5c0098; text-align: center; padding: 40px 24px; color: rgba(255,255,255,0.85); font-size: 0.85rem; }
 
   @media (max-width: 640px) {
-    .page-header { padding: 40px 16px 32px; }
+    .page-header { padding: 72px 16px 56px; }
     .page-header h1 { font-size: 1.6rem; }
     .container { padding: 24px 16px; }
     .pillar-grid { grid-template-columns: repeat(2, 1fr); }
@@ -84,6 +90,9 @@
     .post-table { font-size: 0.8rem; }
     .post-table th, .post-table td { padding: 8px; }
   }
+
+  .footer a { color: #ffee32; text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
 </style>
 </head>
 <body>

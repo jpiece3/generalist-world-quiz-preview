@@ -6,26 +6,26 @@
 <title>Quiz Funnel Walkthrough -- Generalist World</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #1B7C6F;
-    --primary-dark: #155F55;
-    --primary-light: #E6F5F2;
-    --secondary: #E8836B;
-    --secondary-light: #FDF0ED;
-    --accent: #9B7EC8;
-    --accent-light: #F3EFF9;
-    --bg: #FAFAF8;
+    --primary: #5c0098;
+    --primary-dark: #470075;
+    --primary-light: #f9efff;
+    --secondary: #ffee32;
+    --secondary-light: #fff9d6;
+    --accent: #e0b1ff;
+    --accent-light: #f3e5ff;
+    --bg: #FFFFFF;
     --bg-card: #FFFFFF;
-    --text: #1A1A1A;
-    --text-secondary: #4A4A4A;
-    --text-muted: #8A8A8A;
-    --border: #E5E3DF;
+    --text: #02061d;
+    --text-secondary: #3a3a4a;
+    --text-muted: #7a7a8a;
+    --border: #e8ddf2;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: 'Inter', -apple-system, sans-serif;
+    font-family: 'Work Sans', -apple-system, sans-serif;
     background: var(--bg);
     color: var(--text-secondary);
     line-height: 1.65;
@@ -34,7 +34,7 @@
 
   /* HERO */
   .hero {
-    background: linear-gradient(135deg, var(--primary) 0%, #1a6b60 60%, #155F55 100%);
+    background: linear-gradient(135deg, #5c0098 0%, #470075 60%, #3a005f 100%);
     color: white;
     padding: 80px 24px 64px;
     text-align: center;
@@ -49,7 +49,7 @@
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background: rgba(232,131,107,0.15);
+    background: rgba(224,177,255,0.15);
     filter: blur(60px);
   }
   .hero::after {
@@ -60,7 +60,7 @@
     width: 250px;
     height: 250px;
     border-radius: 50%;
-    background: rgba(155,126,200,0.12);
+    background: rgba(255,238,50,0.12);
     filter: blur(50px);
   }
   .hero-badge {
@@ -75,7 +75,7 @@
     margin-bottom: 20px;
   }
   .hero h1 {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 16px;
@@ -114,11 +114,11 @@
     margin-bottom: 12px;
   }
   .label-teal { background: var(--primary-light); color: var(--primary); }
-  .label-coral { background: var(--secondary-light); color: var(--secondary); }
-  .label-purple { background: var(--accent-light); color: var(--accent); }
+  .label-coral { background: var(--secondary-light); color: #b59400; }
+  .label-purple { background: var(--accent-light); color: #8a2be2; }
 
   .section h2 {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--text);
@@ -147,7 +147,7 @@
     transition: box-shadow 0.2s ease;
   }
   .step:hover {
-    box-shadow: 0 4px 16px rgba(27,124,111,0.06);
+    box-shadow: 0 4px 16px rgba(92,0,152,0.06);
   }
   .step-number {
     display: flex;
@@ -158,13 +158,13 @@
     border-radius: 50%;
     background: var(--primary);
     color: white;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-weight: 700;
     font-size: 1.1rem;
     flex-shrink: 0;
   }
   .step-content h3 {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 1.1rem;
     font-weight: 600;
     color: var(--text);
@@ -191,11 +191,11 @@
     transition: box-shadow 0.2s ease, transform 0.2s ease;
   }
   .data-card:hover {
-    box-shadow: 0 4px 12px rgba(27,124,111,0.08);
+    box-shadow: 0 4px 12px rgba(92,0,152,0.08);
     transform: translateY(-2px);
   }
   .data-card .number {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 2rem;
     font-weight: 700;
     color: var(--primary);
@@ -222,10 +222,10 @@
     transition: box-shadow 0.2s ease;
   }
   .info-card:hover {
-    box-shadow: 0 4px 12px rgba(27,124,111,0.08);
+    box-shadow: 0 4px 12px rgba(92,0,152,0.08);
   }
   .info-card h4 {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 1rem;
     font-weight: 600;
     color: var(--text);

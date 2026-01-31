@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Copy Explainer -- Generalist World Career Blocker Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #5c0098;
+    --primary-dark: #470075;
+    --primary-light: #f9efff;
+    --secondary: #ffee32;
+    --secondary-light: #fff9d6;
+    --accent: #e0b1ff;
+    --accent-light: #f3e5ff;
+    --bg: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --text: #02061d;
+    --text-secondary: #3a3a4a;
+    --text-muted: #7a7a8a;
+    --border: #e8ddf2;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Work Sans', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text-secondary);
+    line-height: 1.65;
+    font-size: 16px;
+  }
+  .page-header {
+    background: linear-gradient(135deg, #5c0098 0%, #470075 100%);
+    color: white;
+    padding: 60px 24px 48px;
+    text-align: center;
+  }
+  .page-header h1 {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .page-header p {
+    font-size: 1.05rem;
+    opacity: 0.9;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 24px 60px;
+  }
+  .section {
+    margin-bottom: 16px;
+  }
+  .section-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px 24px;
+    cursor: pointer;
+    user-select: none;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+  .section-toggle:hover {
+    box-shadow: 0 2px 8px rgba(92,0,152,0.08);
+    border-color: rgba(92,0,152,0.2);
+  }
+  .section-toggle h2 {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .toggle-arrow {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    transition: transform 0.25s ease;
+  }
+  .section.open .toggle-arrow {
+    transform: rotate(180deg);
+  }
+  .section-content {
+    display: none;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    padding: 24px;
+    margin-top: -12px;
+    padding-top: 36px;
+  }
+  .section.open .section-content {
+    display: block;
+  }
+  .section.open .section-toggle {
+    border-radius: 12px 12px 0 0;
+    border-bottom-color: transparent;
+  }
+  .explainer-card {
+    background: #FDFCFA;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .explainer-card:last-child { margin-bottom: 0; }
+  .explainer-card h3 {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 8px;
+  }
+  .explainer-card h4 {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 6px;
+    margin-top: 12px;
+  }
+  .explainer-card p, .explainer-card li {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  .explainer-card ul {
+    padding-left: 20px;
+    margin-bottom: 12px;
+  }
+  .explainer-card li { margin-bottom: 4px; }
+  .tag {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin: 2px 4px 2px 0;
+  }
+  .tag-primary { background: var(--primary-light); color: var(--primary); }
+  .tag-secondary { background: var(--secondary-light); color: #b59400; }
+  .tag-accent { background: var(--accent-light); color: #8a2be2; }
+  .highlight-box {
+    background: var(--primary-light);
+    border-left: 3px solid var(--primary);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 12px 0;
+    font-size: 0.95rem;
+  }
+  .score-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 0.9rem;
+  }
+  .score-table th, .score-table td {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    text-align: left;
+  }
+  .score-table th {
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 600;
+    font-family: 'Work Sans', sans-serif;
+  }
+  .score-table tr:nth-child(even) { background: #FAFAF8; }
+  .footer {
+    text-align: center;
+    padding: 32px 24px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+  }
+  @media (max-width: 640px) {
+    .page-header { padding: 40px 16px 32px; }
+    .page-header h1 { font-size: 1.6rem; }
+    .container { padding: 24px 16px; }
+    .section-toggle { padding: 14px 16px; }
+    .section-toggle h2 { font-size: 1.05rem; }
+    .section-content { padding: 16px; }
+    .score-table { font-size: 0.8rem; }
+    .score-table th, .score-table td { padding: 6px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Quiz Copy Explainer</h1>
+  <p>The strategic rationale behind every copy decision in the Generalist World Career Blocker Quiz. Click each section to expand.</p>
+</div>
+
+<div class="container">
+
+  <!-- Section 1: Question Rationale -->
+  <div class="section" id="s1">
+    <div class="section-toggle" onclick="toggleSection('s1')">
+      <h2><span class="section-number">1</span> Question Rationale</h2>
+      <span class="toggle-arrow">&#9662;</span>
+    </div>
+    <div class="section-content">
+      <div class="explainer-card">
+        <h3>Q1: Where Are You Right Now? (Card Selection)</h3>
+        <h4>Why this question?</h4>
+        <p>Opens with an identity-based self-selection question. Card selection creates visual engagement and low friction -- the quiz taker "sees themselves" in one card rather than reading through text options. This is a deliberate pattern from identity quizzes: start with belonging, not assessment.</p>
+        <h4>Why these four options?</h4>
+        <ul>
+          <li><strong>The Explorer</strong> -- Maps to Cold segment. They're still in the discovery phase and need identity validation before any product.</li>
+          <li><strong>The Stalled Engine</strong> -- Maps to Warm. They've identified as a generalist but can't translate it into career momentum.</li>
+          <li><strong>The Quiet Force</strong> -- Maps to Warm-Hot. They're doing the work but feel invisible. High need for community and positioning.</li>
+          <li><strong>The Ready Launcher</strong> -- Maps to Hot. They're ready for tools and community. Highest scoring option (15 points).</li>
+        </ul>
+        <div class="highlight-box">The card labels ("Explorer," "Stalled Engine," etc.) are designed to be shareable. People screenshot and post these. Each is identity-affirming, never pathologizing.</div>
+      </div>
+
+      <div class="explainer-card">
+        <h3>Q2: How Clearly Can You Articulate Your Value? (Scale Slider)</h3>
+        <h4>Why this question?</h4>
+        <p>Positioning clarity is the #1 pain point across ALL generalist segments (from research). The slider creates honest self-assessment -- people can be more nuanced than "yes/no." Also, the physical act of sliding creates embodied engagement.</p>
+        <h4>Why a slider instead of multiple choice?</h4>
+        <p>Sliders reduce social desirability bias. People are more honest on a spectrum than when choosing between discrete labels. The end-labels ("Total blank" vs. "Crystal clear -- I own the room") are deliberately vivid to help people self-place accurately.</p>
+      </div>
+
+      <div class="explainer-card">
+        <h3>Q3: What Skills Are You Actually Using? (Tag Cloud)</h3>
+        <h4>Why this question?</h4>
+        <p>This is the only multi-select question. It maps BREADTH of skill activation -- the more skills they're actively using, the higher their career readiness. It also doubles as profile matching: each tag maps to one of the 5 generalist archetypes (Connector, Innovator, Systems Thinker, Translator, Renaissance Builder).</p>
+        <h4>Why these 8 skills?</h4>
+        <p>Each skill maps to a specific archetype. Two tags per archetype ensures balanced representation. The skills are described in action language ("Translating complex ideas" not "Translation skills") to help people self-identify. No skill is negative or "wrong" -- every selection adds points.</p>
+      </div>
+
+      <div class="explainer-card">
+        <h3>Q4: How Do You Feel About Your Career Path? (Emoji Scale)</h3>
+        <h4>Why this question?</h4>
+        <p>This is the emotional temperature check. It bypasses rational self-assessment and captures the FELT experience of being a generalist. Emoji scales are proven to be more honest than text-based scales for emotional questions. The helper text "Go with your gut -- no one's watching" deliberately reduces overthinking.</p>
+        <h4>Why 5 options, not 3?</h4>
+        <p>Five points prevent the "middle option" problem where everyone picks neutral. The range from "Anxious" to "Fired up" maps directly to the Hot/Warm/Cold temperature bands, making this one of the strongest temperature indicators in the quiz.</p>
+      </div>
+
+      <div class="explainer-card">
+        <h3>Q5: What's Your Biggest Career Blocker? (Multiple Choice)</h3>
+        <h4>Why this question?</h4>
+        <p>This is the KEY diagnostic question. Every other question provides context; this one drives the result profile. Each answer maps directly to one of the 5 profiles (Positioning Gap, Strategy Gap, Belonging Gap, Focus Gap). The phrasing "snap your fingers and fix ONE thing" forces prioritization -- generalists struggle with this, making the answer especially revealing.</p>
+        <h4>Why only 4 options (not 5)?</h4>
+        <p>Renaissance Builder is not a "blocker" -- it's the absence of blockers. Including a 5th "I don't have a blocker" option would feel invalidating and also bias the scoring. Instead, Renaissance Builders are identified through their cumulative tag pattern across all 7 questions.</p>
+      </div>
+
+      <div class="explainer-card">
+        <h3>Q6: Have You Invested Before? (Yes/No Toggle)</h3>
+        <h4>Why this question?</h4>
+        <p>This is a subtle qualification question disguised as context-gathering. Past investment behavior is the single strongest predictor of future purchase. The binary format keeps it light -- it feels like a simple yes/no, not a "how much have you spent" interrogation. The helper text "No judgment either way" is critical -- it prevents shame for first-timers.</p>
+        <h4>Why is "Yes" worth 15 points?</h4>
+        <p>Past investors are significantly more likely to join the community or purchase Unboxed. This single answer is worth more than most other questions because it's a behavioral signal (what they've DONE) rather than an attitudinal one (how they FEEL).</p>
+      </div>
+
+      <div class="explainer-card">
+        <h3>Q7: How Important Is Community? (Star Rating)</h3>
+        <h4>Why this question?</h4>
+        <p>Gauges community appetite, which directly feeds the Community product recommendation. Star ratings feel conclusive and satisfying as a quiz closer -- they give the quiz taker a sense of "wrapping up." This question also serves as a self-commitment device: rating community as "essential" makes them more receptive to the community CTA in their results.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Answer Psychology -->
+  <div class="section" id="s2">
+    <div class="section-toggle" onclick="toggleSection('s2')">
+      <h2><span class="section-number">2</span> Answer Psychology</h2>
+      <span class="toggle-arrow">&#9662;</span>
+    </div>
+    <div class="section-content">
+      <div class="explainer-card">
+        <h3>Identity-Affirming Language Pattern</h3>
+        <p>Every answer option uses identity-affirming language. No answer makes the quiz taker feel "wrong" or "behind." Even the lowest-scoring options frame the person positively:</p>
+        <ul>
+          <li>"I'm still figuring out how all my interests connect -- <strong>and that's exciting</strong>" (Q1, lowest score)</li>
+          <li>"Not yet -- <strong>this would be a first</strong>" (Q6, not "I've never invested")</li>
+          <li>"I prefer going solo" (Q7, not "I don't need people")</li>
+        </ul>
+        <div class="highlight-box">This is non-negotiable for the Generalist World brand. These people have spent years feeling "broken" for not specializing. The quiz must NEVER reinforce that feeling. Every answer validates who they are.</div>
+      </div>
+
+      <div class="explainer-card">
+        <h3>Progressive Disclosure of Vulnerability</h3>
+        <p>The questions are sequenced to gradually increase emotional depth:</p>
+        <ul>
+          <li><strong>Q1-Q3:</strong> Cognitive / behavioral -- "What are you doing? What skills do you have?" (safe territory)</li>
+          <li><strong>Q4-Q5:</strong> Emotional / diagnostic -- "How do you feel? What's really blocking you?" (deeper territory)</li>
+          <li><strong>Q6-Q7:</strong> Commitment / aspiration -- "What are you willing to do? What do you want?" (investment territory)</li>
+        </ul>
+        <p>This mirrors therapeutic conversation structure: establish safety, explore feelings, invite action.</p>
+      </div>
+
+      <div class="explainer-card">
+        <h3>No Dead-End Answers</h3>
+        <p>Every possible combination of answers leads to a meaningful, actionable result. There is no "you scored too low" or "you don't qualify." Even a score of 0 (theoretically impossible but conceptually the lowest) leads to The Positioning Gap profile with warm, identity-affirming language.</p>
+      </div>
+
+      <div class="explainer-card">
+        <h3>The "So What Do You Do?" Trigger</h3>
+        <p>Question 2 uses the exact phrase generalists dread most: "So what do you actually do?" This is deliberate. It creates an emotional micro-moment of recognition -- "this quiz KNOWS what I go through." That recognition builds trust, which increases completion rates and email capture conversion.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Scoring Logic Explained -->
+  <div class="section" id="s3">
+    <div class="section-toggle" onclick="toggleSection('s3')">
+      <h2><span class="section-number">3</span> Scoring Logic Explained</h2>
+      <span class="toggle-arrow">&#9662;</span>
+    </div>
+    <div class="section-content">
+      <div class="explainer-card">
+        <h3>Score Distribution: 0-100 Points</h3>
+        <table class="score-table">
+          <thead>
+            <tr><th>Question</th><th>Type</th><th>Max Score</th><th>Weight</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Q1: Where Are You?</td><td>Card Selection</td><td>15</td><td>15%</td></tr>
+            <tr><td>Q2: Articulate Value</td><td>Scale Slider</td><td>14</td><td>14%</td></tr>
+            <tr><td>Q3: Active Skills</td><td>Tag Cloud</td><td>14</td><td>14%</td></tr>
+            <tr><td>Q4: Career Feeling</td><td>Emoji Scale</td><td>15</td><td>15%</td></tr>
+            <tr><td>Q5: Biggest Blocker</td><td>Multiple Choice</td><td>14</td><td>14%</td></tr>
+            <tr><td>Q6: Past Investment</td><td>Yes/No Toggle</td><td>15</td><td>15%</td></tr>
+            <tr><td>Q7: Community Need</td><td>Star Rating</td><td>13</td><td>13%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="explainer-card">
+        <h3>Temperature Bands</h3>
+        <table class="score-table">
+          <thead>
+            <tr><th>Band</th><th>Score</th><th>Meaning</th><th>CTA Strategy</th></tr>
+          </thead>
+          <tbody>
+            <tr><td style="color:#2D9C6F;font-weight:600">Hot</td><td>80-100</td><td>High readiness -- have clarity and momentum</td><td>Community or Unboxed</td></tr>
+            <tr><td style="color:#E5A74E;font-weight:600">Warm</td><td>50-79</td><td>Moderate readiness -- identified as generalist but have gaps</td><td>Guidebook + Newsletter</td></tr>
+            <tr><td style="color:#5B8FD4;font-weight:600">Cold</td><td>0-49</td><td>Early stage -- still wrestling with identity</td><td>Newsletter + Archetype Quiz</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="explainer-card">
+        <h3>Tag-Based Profile Matching</h3>
+        <p>Each answer assigns tags. After all 7 questions, the system counts tag matches against each profile's trigger tags:</p>
+        <ul>
+          <li><strong>Positioning Gap:</strong> <span class="tag tag-primary">blocker-positioning</span> <span class="tag tag-primary">low-clarity</span> <span class="tag tag-primary">articulation-gap</span></li>
+          <li><strong>Strategy Gap:</strong> <span class="tag tag-secondary">blocker-strategy</span> <span class="tag tag-secondary">direction-gap</span> <span class="tag tag-secondary">needs-course</span></li>
+          <li><strong>Belonging Gap:</strong> <span class="tag tag-accent">blocker-isolation</span> <span class="tag tag-accent">needs-community</span> <span class="tag tag-accent">community-essential</span></li>
+          <li><strong>Focus Gap:</strong> <span class="tag tag-primary">blocker-overwhelm</span> <span class="tag tag-primary">needs-framework</span> <span class="tag tag-primary">focus-gap</span></li>
+          <li><strong>Renaissance Builder:</strong> <span class="tag tag-secondary">ready</span> <span class="tag tag-secondary">action-oriented</span> <span class="tag tag-secondary">past-investor</span> (requires 3+ matches)</li>
+        </ul>
+        <div class="highlight-box">Q5 tags carry 2x weight in tie-breaking because it directly asks "what's your biggest blocker?" -- making it the most reliable diagnostic signal.</div>
+      </div>
+
+      <div class="explainer-card">
+        <h3>Renaissance Builder Override</h3>
+        <p>If total score is 85+ AND the user selected "Ready Launcher" (Q1) AND "Yes, I've invested before" (Q6), the system overrides to Renaissance Builder regardless of other tag matches. These three signals together indicate someone who has transcended individual blockers -- they don't have a gap, they have acceleration potential.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 4: Email Sequence Strategy -->
+  <div class="section" id="s4">
+    <div class="section-toggle" onclick="toggleSection('s4')">
+      <h2><span class="section-number">4</span> Email Sequence Strategy</h2>
+      <span class="toggle-arrow">&#9662;</span>
+    </div>
+    <div class="section-content">
+      <div class="explainer-card">
+        <h3>Why 14 Emails Across 5 Sequences?</h3>
+        <p>The email system is designed for two goals: (1) deliver value immediately and (2) nurture at the right speed for each temperature.</p>
+        <ul>
+          <li><strong>Welcome (3 emails, all):</strong> Universal foundation. Delivers results, shares a framework, provides belonging. Everyone gets these regardless of score.</li>
+          <li><strong>Cold Nurture (4 emails):</strong> Longest sequence because cold leads need the most education. Moves from identity validation to science to social proof to practical frameworks over 10 days.</li>
+          <li><strong>Warm Activation (3 emails):</strong> Mid-length. They already know they're generalists -- they need tools and testimonials, not identity education.</li>
+          <li><strong>Hot Path (2 emails):</strong> Shortest because hot leads need momentum, not nurture. Direct to community recommendation.</li>
+          <li><strong>Win-Back (2 emails):</strong> Re-engagement for anyone who goes dark. Tone shifts to "no pressure, we're still here."</li>
+        </ul>
+      </div>
+
+      <div class="explainer-card">
+        <h3>Day 0 Immediate Send</h3>
+        <p>The first welcome email (W1) sends immediately after quiz completion. This is critical because the quiz taker is at peak engagement and emotional receptivity right after seeing their results. Delaying even by hours would reduce open rates significantly.</p>
+      </div>
+
+      <div class="explainer-card">
+        <h3>Voice Consistency</h3>
+        <p>All 14 emails are written in Milly's first-person voice. This is non-negotiable because:</p>
+        <ul>
+          <li>The brand IS Milly. Community members reference her by name.</li>
+          <li>Personal voice increases reply rates (and replies improve deliverability).</li>
+          <li>"From: Milly from Generalist World" creates a personal relationship, not a brand-to-consumer one.</li>
+          <li>Every email ends with "Talk soon, Milly" or "Warmly, Milly" -- never a corporate sign-off.</li>
+        </ul>
+      </div>
+
+      <div class="explainer-card">
+        <h3>No Urgency Tactics</h3>
+        <p>You'll notice: zero countdown timers, zero "last chance" language, zero scarcity plays. This is deliberate. The Generalist World brand explicitly rejects pressure tactics. The emails respect the reader's timeline because generalists have been pressured their entire careers to "just pick one thing" -- the brand should never add more pressure.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 5: Persuasion Techniques Used -->
+  <div class="section" id="s5">
+    <div class="section-toggle" onclick="toggleSection('s5')">
+      <h2><span class="section-number">5</span> Persuasion Techniques Used</h2>
+      <span class="toggle-arrow">&#9662;</span>
+    </div>
+    <div class="section-content">
+      <div class="explainer-card">
+        <h3>1. Identity Labeling</h3>
+        <p>The entire quiz is built on identity labeling -- the psychological principle that people are more likely to act in accordance with a label they've accepted. By helping quiz takers identify as "generalists" (and specifically as a profile like "The Positioning Gap"), we give them a framework that makes Generalist World's products the logical next step.</p>
+        <p><strong>Where it appears:</strong> Quiz title, every profile name, email subject lines ("You're not scattered"), result headlines.</p>
+      </div>
+
+      <div class="explainer-card">
+        <h3>2. The Barnum Effect (Controlled)</h3>
+        <p>The quiz uses specific-enough profiling that results feel personally tailored. The 5-profile system with radar charts ensures each person sees a unique combination -- not a generic "you're special!" message. The hidden insight section in results adds a layer of specificity that makes the profile feel like genuine diagnosis, not horoscope.</p>
+      </div>
+
+      <div class="explainer-card">
+        <h3>3. Commitment and Consistency</h3>
+        <p>By answering 7 questions, quiz takers make small commitments that increase openness to the recommendation. Q6 ("Have you invested before?") is a direct application -- people who say "yes" are primed to invest again. Q7 (rating community importance) primes high-raters for the community CTA.</p>
+      </div>
+
+      <div class="explainer-card">
+        <h3>4. Social Proof (Numeric + Testimonial)</h3>
+        <p>Social proof appears in three forms throughout the funnel:</p>
+        <ul>
+          <li><strong>Numeric:</strong> "47,000+ subscribers," "570+ community members," "39,000+ quiz takers"</li>
+          <li><strong>Testimonial:</strong> Direct quotes from community members in emails and results</li>
+          <li><strong>Implicit:</strong> "You're not the only one" -- the existence of the quiz itself proves others share the experience</li>
+        </ul>
+      </div>
+
+      <div class="explainer-card">
+        <h3>5. Loss Aversion (Gentle)</h3>
+        <p>The quiz title "What's Holding Your Generalist Career Back?" frames the problem as something being LOST (potential, career progress). This is gentler than "What You're Missing" or "What You're Doing Wrong" but still leverages loss aversion. The result profiles name specific "gaps" -- positioning gap, strategy gap -- reinforcing that something concrete is absent.</p>
+      </div>
+
+      <div class="explainer-card">
+        <h3>6. The Permission Pattern</h3>
+        <p>Generalists have been told their whole careers that something is wrong with them. The quiz systematically gives PERMISSION: "You're not broken," "Your range is your strategy," "There's nothing wrong with you." This is both therapeutic and persuasive -- people who feel validated are more receptive to next steps from the person who validated them.</p>
+      </div>
+
+      <div class="explainer-card">
+        <h3>7. Reciprocity Through Value-First Results</h3>
+        <p>The results page delivers genuine value BEFORE asking anything. The radar chart, profile breakdown, hidden insight, and 3 actionable tips are all free. The CTAs come last and feel like natural next steps, not sales pitches. This triggers reciprocity -- they've received value and feel inclined to take the recommended action.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 6: Customer Segments Explained -->
+  <div class="section" id="s6">
+    <div class="section-toggle" onclick="toggleSection('s6')">
+      <h2><span class="section-number">6</span> Customer Segments Explained</h2>
+      <span class="toggle-arrow">&#9662;</span>
+    </div>
+    <div class="section-content">
+      <div class="explainer-card">
+        <h3>Temperature Segments (How ready are they?)</h3>
+        <table class="score-table">
+          <thead>
+            <tr><th>Segment</th><th>Score</th><th>Profile</th><th>What They Need</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="color:#2D9C6F;font-weight:600">Hot</td>
+              <td>80-100</td>
+              <td>Mid-career (30-50), already identify as generalists, active in content</td>
+              <td>Community, positioning tools, curated job opportunities</td>
+            </tr>
+            <tr>
+              <td style="color:#E5A74E;font-weight:600">Warm</td>
+              <td>50-79</td>
+              <td>Professionals (25-45), feel "different" but haven't found the language</td>
+              <td>Identity validation, success stories, framework-based content</td>
+            </tr>
+            <tr>
+              <td style="color:#5B8FD4;font-weight:600">Cold</td>
+              <td>0-49</td>
+              <td>Early-to-mid (22-35), dissatisfied but don't know why</td>
+              <td>"What is a generalist?" education, quiz as discovery, permission</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="explainer-card">
+        <h3>Profile Segments (What's their blocker?)</h3>
+        <table class="score-table">
+          <thead>
+            <tr><th>Profile</th><th>Core Blocker</th><th>Primary Recommendation</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Positioning Gap</td><td>Can't articulate their value</td><td>Positioning Guidebook</td></tr>
+            <tr><td>Strategy Gap</td><td>No career framework</td><td>Unboxed Course</td></tr>
+            <tr><td>Belonging Gap</td><td>Professional isolation</td><td>Community</td></tr>
+            <tr><td>Focus Gap</td><td>Too many directions</td><td>Unboxed Course</td></tr>
+            <tr><td>Renaissance Builder</td><td>No blocker -- needs acceleration</td><td>Community</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="explainer-card">
+        <h3>How Temperature and Profile Interact</h3>
+        <p>A person can be any temperature with any profile. For example:</p>
+        <ul>
+          <li><strong>Hot + Positioning Gap:</strong> Ready to buy, knows their blocker is articulation. Shows them the Positioning Guidebook with confidence.</li>
+          <li><strong>Cold + Belonging Gap:</strong> Doesn't even know they're a generalist yet, but craves community. Nurture with identity content first, introduce community later.</li>
+          <li><strong>Warm + Strategy Gap:</strong> Knows they're a generalist, stuck without a system. Deliver frameworks via email, then introduce Unboxed.</li>
+        </ul>
+        <p>The copy adapts headlines, CTA language, and email sequence to this intersection -- making every combination feel personalised.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Generalist World -- Career Blocker Quiz Funnel -- Copy Strategy Explainer
+</div>
+
+<script>
+function toggleSection(id) {
+  var el = document.getElementById(id);
+  el.classList.toggle('open');
+}
+</script>
+
+</body>
+</html>

@@ -6,26 +6,26 @@
 <title>Client Preview -- Generalist World Career Blocker Quiz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #1B7C6F;
-    --primary-dark: #155F55;
-    --primary-light: #E6F5F2;
-    --secondary: #E8836B;
-    --secondary-light: #FDF0ED;
-    --accent: #9B7EC8;
-    --accent-light: #F3EFF9;
-    --bg: #FAFAF8;
+    --primary: #5c0098;
+    --primary-dark: #470075;
+    --primary-light: #f9efff;
+    --secondary: #ffee32;
+    --secondary-light: #fff9d6;
+    --accent: #e0b1ff;
+    --accent-light: #f3e5ff;
+    --bg: #FFFFFF;
     --bg-card: #FFFFFF;
-    --text: #1A1A1A;
-    --text-secondary: #4A4A4A;
-    --text-muted: #8A8A8A;
-    --border: #E5E3DF;
+    --text: #02061d;
+    --text-secondary: #3a3a4a;
+    --text-muted: #7a7a8a;
+    --border: #e8ddf2;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    font-family: 'Inter', -apple-system, sans-serif;
+    font-family: 'Work Sans', -apple-system, sans-serif;
     background: var(--bg);
     color: var(--text-secondary);
     line-height: 1.65;
@@ -35,7 +35,7 @@
 
   /* HERO */
   .hero {
-    background: linear-gradient(135deg, var(--primary) 0%, #1a6b60 60%, #155F55 100%);
+    background: linear-gradient(135deg, #5c0098 0%, #470075 60%, #3a005f 100%);
     color: white;
     padding: 80px 24px 64px;
     text-align: center;
@@ -50,7 +50,7 @@
     width: 350px;
     height: 350px;
     border-radius: 50%;
-    background: rgba(232,131,107,0.12);
+    background: rgba(224,177,255,0.12);
     filter: blur(60px);
     pointer-events: none;
   }
@@ -62,7 +62,7 @@
     width: 280px;
     height: 280px;
     border-radius: 50%;
-    background: rgba(155,126,200,0.1);
+    background: rgba(255,238,50,0.1);
     filter: blur(50px);
     pointer-events: none;
   }
@@ -80,7 +80,7 @@
     z-index: 1;
   }
   .hero h1 {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 2.5rem;
     font-weight: 700;
     margin-bottom: 12px;
@@ -139,11 +139,11 @@
   }
   .nav-card:hover {
     box-shadow:
-      0 4px 8px rgba(27,124,111,0.06),
-      0 8px 16px rgba(27,124,111,0.04),
-      0 16px 32px rgba(27,124,111,0.03);
+      0 4px 8px rgba(92,0,152,0.06),
+      0 8px 16px rgba(92,0,152,0.04),
+      0 16px 32px rgba(92,0,152,0.03);
     transform: translateY(-4px);
-    border-color: rgba(27,124,111,0.2);
+    border-color: rgba(92,0,152,0.2);
   }
   .nav-card:hover::before {
     opacity: 1;
@@ -162,14 +162,14 @@
     border-radius: 50%;
     background: var(--primary-light);
     color: var(--primary);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-weight: 700;
     font-size: 0.85rem;
     margin-bottom: 14px;
   }
 
   .nav-card h3 {
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Work Sans', sans-serif;
     font-size: 1.1rem;
     font-weight: 700;
     color: var(--text);
@@ -192,11 +192,11 @@
     text-transform: uppercase;
     letter-spacing: 0.04em;
   }
-  .tag-overview { background: var(--primary-light); color: var(--primary); }
-  .tag-research { background: #E1F0FF; color: #3B7DD8; }
-  .tag-copy { background: var(--secondary-light); color: var(--secondary); }
-  .tag-strategy { background: var(--accent-light); color: var(--accent); }
-  .tag-growth { background: #FFF3E0; color: #D4860A; }
+  .tag-overview { background: #f9efff; color: #5c0098; }
+  .tag-research { background: #e8f0ff; color: #3B7DD8; }
+  .tag-copy { background: #fff9d6; color: #b59400; }
+  .tag-strategy { background: #f3e5ff; color: #8a2be2; }
+  .tag-growth { background: #fff3e0; color: #D4860A; }
 
   .card-arrow {
     position: absolute;

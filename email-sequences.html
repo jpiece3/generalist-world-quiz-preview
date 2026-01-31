@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Email Sequences -- Generalist World Career Blocker Quiz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #5c0098;
+    --primary-dark: #470075;
+    --primary-light: #f9efff;
+    --secondary: #ffee32;
+    --secondary-light: #fff9d6;
+    --accent: #e0b1ff;
+    --accent-light: #f3e5ff;
+    --bg: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --text: #02061d;
+    --text-secondary: #3a3a4a;
+    --text-muted: #7a7a8a;
+    --border: #e8ddf2;
+    --hot: #2D9C6F;
+    --hot-bg: #E8F7F0;
+    --warm: #E5A74E;
+    --warm-bg: #FDF5E8;
+    --cold: #5B8FD4;
+    --cold-bg: #EBF2FB;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Work Sans', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text-secondary);
+    line-height: 1.65;
+    font-size: 16px;
+  }
+
+  .page-header {
+    background: linear-gradient(135deg, #5c0098 0%, #470075 100%);
+    color: white;
+    padding: 60px 24px 48px;
+    text-align: center;
+  }
+
+  .page-header h1 {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .page-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-item .number {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+  }
+
+  .stat-item .label {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+
+  .sequence-section {
+    margin-bottom: 48px;
+  }
+
+  .sequence-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .sequence-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 14px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-welcome { background: var(--primary-light); color: var(--primary); }
+  .badge-cold { background: var(--cold-bg); color: var(--cold); }
+  .badge-warm { background: var(--warm-bg); color: var(--warm); }
+  .badge-hot { background: var(--hot-bg); color: var(--hot); }
+  .badge-winback { background: var(--accent-light); color: #8a2be2; }
+
+  .sequence-header h2 {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .sequence-meta {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+
+  .email-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+  }
+
+  .email-card:hover {
+    box-shadow: 0 4px 12px rgba(92,0,152,0.08), 0 8px 24px rgba(92,0,152,0.04);
+  }
+
+  .email-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .email-card-header:hover {
+    background: #FAFAF8;
+  }
+
+  .email-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .email-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .email-subject {
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .email-day {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    margin-left: 8px;
+    flex-shrink: 0;
+  }
+
+  .toggle-icon {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+    margin-left: 12px;
+  }
+
+  .email-card.open .toggle-icon {
+    transform: rotate(180deg);
+  }
+
+  .email-body {
+    display: none;
+    padding: 20px 24px 24px;
+    border-top: 1px solid var(--border);
+    background: #FDFCFA;
+  }
+
+  .email-card.open .email-body {
+    display: block;
+  }
+
+  .email-meta-row {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .email-meta-item {
+    font-size: 0.8rem;
+  }
+
+  .email-meta-item strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .email-content {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  .email-content p {
+    margin-bottom: 16px;
+  }
+
+  .email-content p:last-child {
+    margin-bottom: 0;
+  }
+
+  .flow-diagram {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px 24px;
+    margin-bottom: 48px;
+    text-align: center;
+  }
+
+  .flow-diagram h3 {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 24px;
+  }
+
+  .flow-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .flow-step {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: 'Work Sans', sans-serif;
+  }
+
+  .flow-arrow {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+  }
+
+  .flow-welcome { background: var(--primary-light); color: var(--primary); }
+  .flow-cold { background: var(--cold-bg); color: var(--cold); }
+  .flow-warm { background: var(--warm-bg); color: var(--warm); }
+  .flow-hot { background: var(--hot-bg); color: var(--hot); }
+  .flow-winback { background: var(--accent-light); color: #8a2be2; }
+
+  .footer {
+    text-align: center;
+    padding: 32px 24px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 640px) {
+    .page-header { padding: 40px 16px 32px; }
+    .page-header h1 { font-size: 1.6rem; }
+    .stats-bar { gap: 16px; }
+    .stat-item .number { font-size: 1.2rem; }
+    .container { padding: 24px 16px; }
+    .email-card-header { padding: 12px 16px; }
+    .email-info { gap: 8px; }
+    .email-body { padding: 16px; }
+    .email-content { padding: 16px; font-size: 0.9rem; }
+    .email-meta-row { gap: 12px; }
+    .flow-steps { flex-direction: column; gap: 4px; }
+    .flow-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Email Sequences</h1>
+  <p>14 emails across 5 sequences -- all in Milly's warm, genuine voice. Written for the Generalist World Career Blocker Quiz funnel.</p>
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="number">14</div>
+      <div class="label">Total Emails</div>
+    </div>
+    <div class="stat-item">
+      <div class="number">5</div>
+      <div class="label">Sequences</div>
+    </div>
+    <div class="stat-item">
+      <div class="number">3</div>
+      <div class="label">Temperature Bands</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Flow Diagram -->
+  <div class="flow-diagram">
+    <h3>Email Sequence Flow</h3>
+    <div class="flow-steps">
+      <div class="flow-step flow-welcome">Quiz Complete</div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-step flow-welcome">Welcome (3 emails, all)</div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-step flow-cold">Cold (4 emails, 0-49)</div>
+      <div class="flow-step flow-warm">Warm (3 emails, 50-79)</div>
+      <div class="flow-step flow-hot">Hot (2 emails, 80-100)</div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-step flow-winback">Win-Back (2 emails, inactive)</div>
+    </div>
+  </div>
+
+  <!-- WELCOME SEQUENCE -->
+  <div class="sequence-section">
+    <div class="sequence-header">
+      <span class="sequence-badge badge-welcome">All</span>
+      <h2>Welcome Sequence</h2>
+    </div>
+    <div class="sequence-meta">3 emails -- Days 0, 2, 5 -- Sent to all quiz completers regardless of score</div>
+
+    <div class="email-card" onclick="this.classList.toggle('open')">
+      <div class="email-card-header">
+        <div class="email-info">
+          <div class="email-number">W1</div>
+          <div class="email-subject">Your career map is here</div>
+        </div>
+        <span class="email-day">Day 0</span>
+        <span class="toggle-icon">&#9662;</span>
+      </div>
+      <div class="email-body">
+        <div class="email-meta-row">
+          <div class="email-meta-item"><strong>Sender:</strong> Milly from Generalist World</div>
+          <div class="email-meta-item"><strong>CTA:</strong> View results page</div>
+        </div>
+        <div class="email-content">Hi {{first_name}},
+
+Your quiz results are in -- and honestly, I think you'll find them really useful.
+
+Your #1 Career Blocker: {{profile_name}}
+
+Here's your personalised results page with your full strengths radar, career profile breakdown, and recommended next steps:
+
+[View My Full Results]
+
+A quick note from me: I created Generalist World because I spent years believing something was wrong with me for not fitting into a single lane. The day I stopped apologizing for my range was the day everything changed.
+
+Whatever your results show, know this -- your path isn't broken. It's just shaped differently. And there are 47,000+ of us walking similar paths.
+
+Welcome to the generalist movement.
+
+Warmly,
+Milly
+
+P.S. If your results surprised you (or felt spot-on), I'd love to hear about it. Just reply to this email.</div>
+      </div>
+    </div>
+
+    <div class="email-card" onclick="this.classList.toggle('open')">
+      <div class="email-card-header">
+        <div class="email-info">
+          <div class="email-number">W2</div>
+          <div class="email-subject">The reframe that changed it all</div>
+        </div>
+        <span class="email-day">Day 2</span>
+        <span class="toggle-icon">&#9662;</span>
+      </div>
+      <div class="email-body">
+        <div class="email-meta-row">
+          <div class="email-meta-item"><strong>Sender:</strong> Milly from Generalist World</div>
+          <div class="email-meta-item"><strong>CTA:</strong> Value Pyramid framework</div>
+        </div>
+        <div class="email-content">Hi {{first_name}},
+
+Two days ago, you took the Career Blocker Quiz and discovered that your #1 blocker is {{profile_name}}.
+
+I want to share a framework that shifted everything for me -- and for thousands of generalists in this community.
+
+The Generalist Value Pyramid
+
+Most career advice tells you to go deeper. Specialize more. Narrow your focus. But that advice was built for specialists.
+
+The Generalist Value Pyramid flips the script. Instead of depth, it maps your value across three layers:
+
+1. Foundation: Your breadth of skills and experiences (the stuff that makes your CV look "messy" to recruiters)
+2. Bridge: Your ability to connect ideas, people, and domains that specialists can't see
+3. Apex: The unique perspective only YOU have, because only you have walked your specific path
+
+The specialist's advantage is depth. Yours is perspective. And perspective is the one thing AI can't replicate.
+
+Try this: take 5 minutes and map your own Value Pyramid. What sits at each layer?
+
+You might surprise yourself.
+
+Talk soon,
+Milly</div>
+      </div>
+    </div>
+
+    <div class="email-card" onclick="this.classList.toggle('open')">
+      <div class="email-card-header">
+        <div class="email-info">
+          <div class="email-number">W3</div>
+          <div class="email-subject">47,000 people get it</div>
+        </div>
+        <span class="email-day">Day 5</span>
+        <span class="toggle-icon">&#9662;</span>
+      </div>
+      <div class="email-body">
+        <div class="email-meta-row">
+          <div class="email-meta-item"><strong>Sender:</strong> Milly from Generalist World</div>
+          <div class="email-meta-item"><strong>CTA:</strong> Archetype Quiz + Newsletter</div>
+        </div>
+        <div class="email-content">Hi {{first_name}},
+
+I want to tell you something I wish someone had told me years ago.
+
+You are not the only person who feels this way.
+
+I know that sounds obvious when you read it in an email from a community of 47,000+ generalists. But when you're sitting in a meeting, being the only person who connects the dots across three departments while everyone else has a neat, one-line job description -- it feels incredibly lonely.
+
+Here's what some of our community members have said:
+
+"I used to feel completely isolated. Now I've got 400 other people like me across the globe."
+
+"Generalist World has helped me reshape how I see myself."
+
+"I cried real tears because of how beautifully they articulate what I feel."
+
+Whatever your next step is -- you're not walking this path alone anymore.
+
+Every week, I send out frameworks, curated generalist-friendly job opportunities, and stories from people navigating squiggly careers just like yours.
+
+You're already on the list. Just keep opening.
+
+Talk soon,
+Milly
+
+P.S. Take the Generalist Archetype Quiz -- it pairs beautifully with your Career Blocker results.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- COLD NURTURE -->
+  <div class="sequence-section">
+    <div class="sequence-header">
+      <span class="sequence-badge badge-cold">Score 0-49</span>
+      <h2>Cold Nurture Sequence</h2>
+    </div>
+    <div class="sequence-meta">4 emails -- Days 1, 3, 7, 10 -- Identity validation and gentle introduction to generalism</div>
+
+    <div class="email-card" onclick="this.classList.toggle('open')">
+      <div class="email-card-header">
+        <div class="email-info">
+          <div class="email-number">C1</div>
+          <div class="email-subject">You're not scattered</div>
+        </div>
+        <span class="email-day">Day 1</span>
+        <span class="toggle-icon">&#9662;</span>
+      </div>
+      <div class="email-body">
+        <div class="email-meta-row">
+          <div class="email-meta-item"><strong>Sender:</strong> Milly from Generalist World</div>
+          <div class="email-meta-item"><strong>CTA:</strong> Identity validation</div>
+        </div>
+        <div class="email-content">Hi {{first_name}},
+
+Your Career Blocker Quiz results showed that you're in the early stages of your generalist journey. That's not a bad thing. That's actually one of the most exciting places to be.
+
+You might be feeling like your career path looks chaotic compared to the people around you. Like everyone else has a clear direction and you're still figuring it out. Like you're "good at lots of things but not exceptional at any one thing."
+
+I want you to hear this clearly: you're not scattered. You're multi-dimensional.
+
+The feeling of being different? That's not a flaw. It's a signal. It means your brain is wired to connect, synthesize, and see patterns that specialists literally cannot see.
+
+There's a word for people like us: generalists. And there are millions of us worldwide.
+
+Over the next few emails, I'm going to share some frameworks and stories that helped me -- and thousands of others -- stop fighting against our wiring and start building with it.
+
+For now, just sit with this: there's nothing wrong with you. And you're not alone.
+
+Talk soon,
+Milly</div>
+      </div>
+    </div>
+
+    <div class="email-card" onclick="this.classList.toggle('open')">
+      <div class="email-card-header">
+        <div class="email-info">
+          <div class="email-number">C2</div>
+          <div class="email-subject">The science is on your side</div>
+        </div>
+        <span class="email-day">Day 3</span>
+        <span class="toggle-icon">&#9662;</span>
+      </div>
+      <div class="email-body">
+        <div class="email-meta-row">
+          <div class="email-meta-item"><strong>Sender:</strong> Milly from Generalist World</div>
+          <div class="email-meta-item"><strong>CTA:</strong> Range / Emilie Wapnick TED Talk</div>
+        </div>
+        <div class="email-content">Hi {{first_name}},
+
+In 2019, David Epstein published "Range: Why Generalists Triumph in a Specialized World." The research showed something the career advice industry didn't want to hear:
+
+In complex, unpredictable environments, generalists consistently outperform specialists. Not sometimes. Consistently.
+
+Epstein studied Nobel laureates, elite athletes, inventors, and musicians. The pattern was clear: people who sampled widely and connected across domains made breakthroughs.
+
+And here's what matters for your career: the World Economic Forum's 2025 report shows 41% of employers plan workforce reductions due to AI. The roles being automated first? Narrow, repetitive specialist tasks.
+
+The roles growing? Cross-functional leadership. Systems thinking. Creative problem-solving. Stakeholder translation.
+
+Those are generalist skills. YOUR skills.
+
+You're not behind. You're ahead of the curve.
+
+More soon,
+Milly
+
+P.S. Emilie Wapnick's TED Talk "Why Some of Us Don't Have One True Calling" has 11 million views. It's a beautiful 12 minutes.</div>
+      </div>
+    </div>
+
+    <div class="email-card" onclick="this.classList.toggle('open')">
+      <div class="email-card-header">
+        <div class="email-info">
+          <div class="email-number">C3</div>
+          <div class="email-subject">They felt exactly like you</div>
+        </div>
+        <span class="email-day">Day 7</span>
+        <span class="toggle-icon">&#9662;</span>
+      </div>
+      <div class="email-body">
+        <div class="email-meta-row">
+          <div class="email-meta-item"><strong>Sender:</strong> Milly from Generalist World</div>
+          <div class="email-meta-item"><strong>CTA:</strong> Share your results</div>
+        </div>
+        <div class="email-content">Hi {{first_name}},
+
+I want to introduce you to someone who joined Generalist World feeling exactly the way you might be feeling right now -- unsure if "generalist" really applied to them, skeptical that a community could help.
+
+Here's what they said after a few months:
+
+"I have already found greater career clarity and confidence. I now have a much better understanding about how to design my CV and portfolio."
+
+"When I found Generalist World, I realized the box was never the right shape."
+
+The shift happens when you stop trying to fit into a specialist framework and start building your own.
+
+Try one thing this week: tell someone about your quiz results. Say the words: "I think I'm a generalist."
+
+Watch what happens when you name it out loud.
+
+Talk soon,
+Milly</div>
+      </div>
+    </div>
+
+    <div class="email-card" onclick="this.classList.toggle('open')">
+      <div class="email-card-header">
+        <div class="email-info">
+          <div class="email-number">C4</div>
+          <div class="email-subject">Three frameworks for you</div>
+        </div>
+        <span class="email-day">Day 10</span>
+        <span class="toggle-icon">&#9662;</span>
+      </div>
+      <div class="email-body">
+        <div class="email-meta-row">
+          <div class="email-meta-item"><strong>Sender:</strong> Milly from Generalist World</div>
+          <div class="email-meta-item"><strong>CTA:</strong> Archetype Quiz + Positioning Guidebook</div>
+        </div>
+        <div class="email-content">Hi {{first_name}},
+
+Over the last week and a half, we've covered a lot of ground. You've learned that you're not scattered -- you're a generalist. You've seen the science. You've heard from people who felt the same way.
+
+Now I want to give you three practical frameworks you can use today.
+
+1. The "Bridge Statement" -- Instead of listing your job titles, describe the bridge you build: "I help [audience] go from [problem] to [outcome]."
+
+2. The Interest Inventory -- Write down every interest, project, and skill pulling at you. Sort into Active, Simmering, and Archive. You don't need to abandon anything -- you need to sequence.
+
+3. The 90-Day Focus Sprint -- Pick one direction for 90 days. Not forever. Give it your full energy, then reassess. This isn't about choosing one thing for life. It's about choosing one thing for now.
+
+These frameworks come from our weekly newsletter, which goes out to 47,000+ generalists every week.
+
+And if you're curious about what kind of generalist you are, the Archetype Quiz is a wonderful next step.
+
+Warmly,
+Milly</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WARM ACTIVATION -->
+  <div class="sequence-section">
+    <div class="sequence-header">
+      <span class="sequence-badge badge-warm">Score 50-79</span>
+      <h2>Warm Activation Sequence</h2>
+    </div>
+    <div class="sequence-meta">3 emails -- Days 1, 3, 6 -- Framework delivery, social proof, gentle product introduction</div>
+
+    <div class="email-card" onclick="this.classList.toggle('open')">
+      <div class="email-card-header">
+        <div class="email-info">
+          <div class="email-number">WA1</div>
+          <div class="email-subject">This is solvable</div>
+        </div>
+        <span class="email-day">Day 1</span>
+        <span class="toggle-icon">&#9662;</span>
+      </div>
+      <div class="email-body">
+        <div class="email-meta-row">
+          <div class="email-meta-item"><strong>Sender:</strong> Milly from Generalist World</div>
+          <div class="email-meta-item"><strong>CTA:</strong> Blocker-specific advice</div>
+        </div>
+        <div class="email-content">Hi {{first_name}},
+
+Your Career Blocker results landed in the 50-79 range, which tells me something important about you: you've already started the work.
+
+You know you're a generalist. You've accepted (or are accepting) that your path looks different. Now you're in the messy middle -- where you can see the destination but the road isn't clear yet.
+
+I've been exactly where you are. And I can tell you: this stage is where the real breakthroughs happen.
+
+Your specific blocker -- {{profile_name}} -- is solvable. Not with some massive overhaul. With targeted, practical tools built specifically for the way your brain works.
+
+Here's one you can use today:
+
+Write down the ONE conversation you've been avoiding about your career. Maybe it's telling your boss you want a broader role. Maybe it's updating your LinkedIn. Maybe it's admitting the path you're on isn't working.
+
+Name it. That's the first step.
+
+Talk soon,
+Milly</div>
+      </div>
+    </div>
+
+    <div class="email-card" onclick="this.classList.toggle('open')">
+      <div class="email-card-header">
+        <div class="email-info">
+          <div class="email-number">WA2</div>
+          <div class="email-subject">They figured it out</div>
+        </div>
+        <span class="email-day">Day 3</span>
+        <span class="toggle-icon">&#9662;</span>
+      </div>
+      <div class="email-body">
+        <div class="email-meta-row">
+          <div class="email-meta-item"><strong>Sender:</strong> Milly from Generalist World</div>
+          <div class="email-meta-item"><strong>CTA:</strong> Community testimonial</div>
+        </div>
+        <div class="email-content">Hi {{first_name}},
+
+I want to tell you about a community member who had the same career blocker as you.
+
+They came to Generalist World feeling stuck in exactly the same way -- knowing they were a generalist, knowing something was off, but not having the right framework to move forward.
+
+Here's what changed for them:
+
+"Now I have a much better understanding about how to design my CV and portfolio. The positioning framework helped me see that my 'scattered' experience was actually a coherent story -- I just didn't have the right words for it."
+
+"The community was the game-changer. Having people who understand the generalist struggle -- not just intellectually, but viscerally -- made everything feel possible."
+
+The point isn't that they found a magic solution. The point is that they found the right tools and the right people. And that combination unlocked everything.
+
+You're in the middle of your own version of that story right now.
+
+Warmly,
+Milly</div>
+      </div>
+    </div>
+
+    <div class="email-card" onclick="this.classList.toggle('open')">
+      <div class="email-card-header">
+        <div class="email-info">
+          <div class="email-number">WA3</div>
+          <div class="email-subject">Your next step</div>
+        </div>
+        <span class="email-day">Day 6</span>
+        <span class="toggle-icon">&#9662;</span>
+      </div>
+      <div class="email-body">
+        <div class="email-meta-row">
+          <div class="email-meta-item"><strong>Sender:</strong> Milly from Generalist World</div>
+          <div class="email-meta-item"><strong>CTA:</strong> Archetype Quiz + Explore Resources</div>
+        </div>
+        <div class="email-content">Hi {{first_name}},
+
+You've had some time to sit with your Career Blocker results. You've seen the frameworks. You've heard from community members who navigated the same blocker you're facing.
+
+Now the question is: what's next?
+
+Based on your results, here are three paths forward -- ranked from lightest to deepest commitment:
+
+1. Keep reading the newsletter (free) -- Every week, I send frameworks, job opportunities, and generalist career strategies to 47,000+ people. You're already on the list. Just keep opening.
+
+2. Take the Archetype Quiz (free) -- Your Career Blocker Quiz told you what's in the way. The Archetype Quiz tells you what kind of generalist you are. Together, they give you the full picture.
+
+3. Explore the tools that go deeper -- For your specific blocker, the Generalist World resources page has positioning guidebooks, career design programs, and community access -- all built specifically for the generalist brain.
+
+No pressure. No countdown timers. Just options, whenever you're ready.
+
+This is a squiggly career. There's no deadline for your next move.
+
+Talk soon,
+Milly</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOT PATH -->
+  <div class="sequence-section">
+    <div class="sequence-header">
+      <span class="sequence-badge badge-hot">Score 80-100</span>
+      <h2>Hot Path Sequence</h2>
+    </div>
+    <div class="sequence-meta">2 emails -- Days 1, 4 -- Momentum and community highlight</div>
+
+    <div class="email-card" onclick="this.classList.toggle('open')">
+      <div class="email-card-header">
+        <div class="email-info">
+          <div class="email-number">H1</div>
+          <div class="email-subject">You're ready for this</div>
+        </div>
+        <span class="email-day">Day 1</span>
+        <span class="toggle-icon">&#9662;</span>
+      </div>
+      <div class="email-body">
+        <div class="email-meta-row">
+          <div class="email-meta-item"><strong>Sender:</strong> Milly from Generalist World</div>
+          <div class="email-meta-item"><strong>CTA:</strong> Community teaser</div>
+        </div>
+        <div class="email-content">Hi {{first_name}},
+
+Your Career Blocker Quiz results say something I want to make sure you hear: you're ready.
+
+You scored in the 80-100 range, which means you have career clarity, confidence, and momentum. You've done the work to get here. You're not at the beginning of this journey -- you're at the launchpad.
+
+Your specific area to focus on -- {{profile_name}} -- isn't a deep blocker. It's more like the one missing puzzle piece that, once in place, accelerates everything.
+
+I won't bury the lead: the thing that makes the biggest difference for generalists at your stage is other generalists.
+
+Not courses. Not content. People.
+
+570+ professionals in the Generalist World community -- fractional executives, portfolio careerists, founders, operators, creative directors -- all navigating the same kind of squiggly career you are.
+
+I'll share more about the community in my next email. But for now, trust your results: you're closer than you think.
+
+Warmly,
+Milly</div>
+      </div>
+    </div>
+
+    <div class="email-card" onclick="this.classList.toggle('open')">
+      <div class="email-card-header">
+        <div class="email-info">
+          <div class="email-number">H2</div>
+          <div class="email-subject">570+ people like you</div>
+        </div>
+        <span class="email-day">Day 4</span>
+        <span class="toggle-icon">&#9662;</span>
+      </div>
+      <div class="email-body">
+        <div class="email-meta-row">
+          <div class="email-meta-item"><strong>Sender:</strong> Milly from Generalist World</div>
+          <div class="email-meta-item"><strong>CTA:</strong> Community waitlist</div>
+        </div>
+        <div class="email-content">Hi {{first_name}},
+
+A few days ago, your quiz results told us you're ready for the next level. Today, I want to show you what that looks like.
+
+The Generalist World Community is 570+ people across 6 continents who share one thing: they've stopped apologizing for their range and started building with it.
+
+Here's what's inside:
+
+- Your generalist crew -- entrepreneurs, operators, leaders, curious minds
+- Workshops so good you'll watch them 3 times -- intimate live sessions
+- Job search support -- hot seats, feedback sessions, frameworks
+- Curated opportunities that don't ask you to niche down
+- Global meetups -- 100+ events across 13+ cities
+
+And here's what community members say:
+
+"I've got 400 other people like me across the globe."
+"The workshops alone are worth it. But the real magic is the conversations after."
+"This is the last community I'll ever join."
+
+Doors for the next cohort open soon. Join the waitlist to be first to know.
+
+No pressure. When you're ready, we'll be here.
+
+Talk soon,
+Milly</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WIN-BACK -->
+  <div class="sequence-section">
+    <div class="sequence-header">
+      <span class="sequence-badge badge-winback">Inactive</span>
+      <h2>Win-Back Sequence</h2>
+    </div>
+    <div class="sequence-meta">2 emails -- Days 1, 5 (triggered after 14+ days of no opens)</div>
+
+    <div class="email-card" onclick="this.classList.toggle('open')">
+      <div class="email-card-header">
+        <div class="email-info">
+          <div class="email-number">WB1</div>
+          <div class="email-subject">Still here for you</div>
+        </div>
+        <span class="email-day">Day 1</span>
+        <span class="toggle-icon">&#9662;</span>
+      </div>
+      <div class="email-body">
+        <div class="email-meta-row">
+          <div class="email-meta-item"><strong>Sender:</strong> Milly from Generalist World</div>
+          <div class="email-meta-item"><strong>CTA:</strong> View results or retake quiz</div>
+        </div>
+        <div class="email-content">Hi {{first_name}},
+
+It's been a little while since you took the Career Blocker Quiz. Life gets busy -- I completely understand.
+
+Your results are still waiting for you if you want to revisit them:
+
+[View My Results]
+
+And if your situation has changed since you took the quiz -- if things feel different now, better or worse or just... shifted -- you can always retake it. The quiz adapts to where you are today.
+
+[Retake the Quiz]
+
+Either way, I'm here. The newsletter keeps going out every week with frameworks, opportunities, and stories from generalists navigating the same kind of career you are.
+
+No rush. No expiry date. Squiggly careers don't follow timelines.
+
+Warmly,
+Milly</div>
+      </div>
+    </div>
+
+    <div class="email-card" onclick="this.classList.toggle('open')">
+      <div class="email-card-header">
+        <div class="email-info">
+          <div class="email-number">WB2</div>
+          <div class="email-subject">One thing before I go</div>
+        </div>
+        <span class="email-day">Day 5</span>
+        <span class="toggle-icon">&#9662;</span>
+      </div>
+      <div class="email-body">
+        <div class="email-meta-row">
+          <div class="email-meta-item"><strong>Sender:</strong> Milly from Generalist World</div>
+          <div class="email-meta-item"><strong>CTA:</strong> Newsletter + Archetype Quiz + Community</div>
+        </div>
+        <div class="email-content">Hi {{first_name}},
+
+This is my last dedicated email from the Career Blocker Quiz series. After this, you'll just get the regular weekly newsletter -- which, honestly, is where the best stuff lives anyway.
+
+Before I go, I want to leave you with one thought:
+
+The generalist path doesn't have a starting line. You don't need to be "ready" to engage. You don't need to have your career figured out. You don't need permission to explore.
+
+Every generalist in this community started exactly where you are -- with a feeling that something didn't fit, a quiz result that named it, and a slow realization that they weren't alone.
+
+Whenever that realization hits for you, we'll be here:
+
+- Newsletter: Weekly frameworks and opportunities (you're already subscribed)
+- Archetype Quiz: Discover your generalist type
+- Community: 570+ generalists across 6 continents
+
+No countdown timers. No "last chance." Just an open door.
+
+Take care of yourself,
+Milly</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Generalist World -- Career Blocker Quiz Funnel -- Email Sequences Preview<br>
+  14 emails across 5 sequences -- Written in Milly's voice
+</div>
+
+</body>
+</html>

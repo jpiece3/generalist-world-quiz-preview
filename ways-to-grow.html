@@ -6,26 +6,26 @@
 <title>Ways to Grow -- Generalist World Quiz Funnel</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --primary: #1B7C6F;
-    --primary-light: #E6F5F2;
-    --secondary: #E8836B;
-    --secondary-light: #FDF0ED;
-    --accent: #9B7EC8;
-    --accent-light: #F3EFF9;
-    --bg: #FAFAF8;
+    --primary: #5c0098;
+    --primary-light: #f9efff;
+    --secondary: #ffee32;
+    --secondary-light: #fff9d6;
+    --accent: #e0b1ff;
+    --accent-light: #f3e5ff;
+    --bg: #FFFFFF;
     --bg-card: #FFFFFF;
-    --text: #1A1A1A;
-    --text-secondary: #4A4A4A;
-    --text-muted: #8A8A8A;
-    --border: #E5E3DF;
+    --text: #02061d;
+    --text-secondary: #3a3a4a;
+    --text-muted: #7a7a8a;
+    --border: #e8ddf2;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--text-secondary); line-height: 1.65; font-size: 16px; }
-  .page-header { background: linear-gradient(135deg, var(--primary) 0%, #1a6b60 100%); color: white; padding: 60px 24px 48px; text-align: center; }
-  .page-header h1 { font-family: 'DM Sans', sans-serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
+  body { font-family: 'Work Sans', -apple-system, sans-serif; background: var(--bg); color: var(--text-secondary); line-height: 1.65; font-size: 16px; }
+  .page-header { background: linear-gradient(135deg, #5c0098 0%, #470075 100%); color: white; padding: 60px 24px 48px; text-align: center; }
+  .page-header h1 { font-family: 'Work Sans', sans-serif; font-size: 2.2rem; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em; }
   .page-header p { font-size: 1.05rem; opacity: 0.9; max-width: 620px; margin: 0 auto; }
   .container { max-width: 880px; margin: 0 auto; padding: 40px 24px 60px; }
 
@@ -36,9 +36,9 @@
     letter-spacing: 0.06em; margin-bottom: 12px;
   }
   .label-included { background: var(--primary-light); color: var(--primary); }
-  .label-addon { background: var(--secondary-light); color: var(--secondary); }
+  .label-addon { background: var(--secondary-light); color: #b59400; }
 
-  .section h2 { font-family: 'DM Sans', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+  .section h2 { font-family: 'Work Sans', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--text); margin-bottom: 12px; }
   .section > p { font-size: 1rem; margin-bottom: 24px; }
 
   /* INCLUDED FEATURES */
@@ -48,13 +48,13 @@
     padding: 28px; position: relative; overflow: hidden;
     transition: box-shadow 0.2s ease, transform 0.2s ease;
   }
-  .feature-card:hover { box-shadow: 0 4px 16px rgba(27,124,111,0.08); transform: translateY(-2px); }
+  .feature-card:hover { box-shadow: 0 4px 16px rgba(92,0,152,0.08); transform: translateY(-2px); }
   .feature-card::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
     background: linear-gradient(90deg, var(--primary), var(--accent));
   }
   .feature-icon { font-size: 2rem; margin-bottom: 12px; }
-  .feature-card h3 { font-family: 'DM Sans', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .feature-card h3 { font-family: 'Work Sans', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 8px; }
   .feature-card p { font-size: 0.9rem; line-height: 1.6; }
   .feature-card ul { padding-left: 18px; font-size: 0.9rem; margin-top: 8px; }
   .feature-card li { margin-bottom: 4px; }
@@ -71,31 +71,31 @@
     padding: 28px; position: relative; overflow: hidden;
     transition: box-shadow 0.2s ease, transform 0.2s ease;
   }
-  .addon-card:hover { box-shadow: 0 4px 16px rgba(232,131,107,0.08); transform: translateY(-2px); }
+  .addon-card:hover { box-shadow: 0 4px 16px rgba(224,177,255,0.08); transform: translateY(-2px); }
   .addon-card::before {
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
     background: linear-gradient(90deg, var(--secondary), #E5A74E);
   }
-  .addon-card h3 { font-family: 'DM Sans', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .addon-card h3 { font-family: 'Work Sans', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
   .addon-price {
-    font-family: 'DM Sans', sans-serif; font-size: 1.3rem; font-weight: 700;
-    color: var(--secondary); margin-bottom: 10px;
+    font-family: 'Work Sans', sans-serif; font-size: 1.3rem; font-weight: 700;
+    color: #b59400; margin-bottom: 10px;
   }
   .addon-card p { font-size: 0.9rem; line-height: 1.6; margin-bottom: 10px; }
   .addon-card ul { padding-left: 18px; font-size: 0.85rem; }
   .addon-card li { margin-bottom: 4px; }
   .addon-badge {
     display: inline-block; margin-top: 12px; padding: 3px 10px;
-    border-radius: 999px; background: var(--secondary-light); color: var(--secondary);
+    border-radius: 999px; background: var(--secondary-light); color: #b59400;
     font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
   }
 
   /* VALUE NOTE */
   .value-note {
-    background: var(--primary-light); border: 1px solid rgba(27,124,111,0.15);
+    background: var(--primary-light); border: 1px solid rgba(92,0,152,0.15);
     border-radius: 12px; padding: 24px; text-align: center; margin-top: 32px;
   }
-  .value-note h3 { font-family: 'DM Sans', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
+  .value-note h3 { font-family: 'Work Sans', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
   .value-note p { font-size: 0.95rem; max-width: 600px; margin: 0 auto; }
 
   .footer { text-align: center; padding: 32px 24px; color: var(--text-muted); font-size: 0.85rem; border-top: 1px solid var(--border); }
@@ -185,10 +185,10 @@
       <div class="feature-card">
         <div class="feature-icon">&#x1F3A8;</div>
         <h3>Brand-Matched Design</h3>
-        <p>The entire quiz is designed in Generalist World's visual system. Soft design mode with teal/coral/purple palette, organic animations, and mobile-first layout.</p>
+        <p>The entire quiz is designed in Generalist World's visual system. Soft design mode with purple/yellow/lavender palette, organic animations, and mobile-first layout.</p>
         <ul>
           <li>Custom colour palette from brand</li>
-          <li>DM Sans + Inter typography</li>
+          <li>Work Sans typography</li>
           <li>Soft mode animations and micro-interactions</li>
           <li>Responsive (mobile, tablet, desktop)</li>
           <li>WCAG AA accessibility compliance</li>
